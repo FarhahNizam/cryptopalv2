@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import SignUp from './Components/SignUp';
+import App from '../src/App';
+import reportWebVitals from '../src/reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import Consolepage from './Pages/Consolepage';
-import CryptoContext from './CryptoContext';
+import CryptoContext from '../src/CryptoContext';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import 'chart.js';
 
@@ -26,7 +24,5 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();
