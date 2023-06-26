@@ -36,10 +36,12 @@
     margin: 10px 15px;
     padding: 12px 10px;
     border: none;
-    border-radius: 4px;
-    background-color: #007bff;
+    border-radius: 32px;
+    background-color: #BB0163;
     color: #fff;
     cursor: pointer;
+    width: 108;
+    height: 52;
   }
   
 
@@ -55,7 +57,7 @@
   
   .navbar {
     height: 60px;
-    background-color: #fef7e5;
+    background-color: #fff8e6;
     position: relative;
   }
   
@@ -306,3 +308,17 @@
       color: rgba(87, 77, 51, 0.66);
     }
   
+    .chart-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .chart-wrapper {
+      width: 90%;
+      max-width: 800px;
+      height: 1000px;
+      margin-top: 20px;
+    }
+    

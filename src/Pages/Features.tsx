@@ -7,7 +7,7 @@ const Features=() => {
         <div>
              <NavBar />
              <h1>Market</h1>
-           
+           <RealTimeChart />
              
             
         </div>

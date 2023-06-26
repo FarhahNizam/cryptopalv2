@@ -25,23 +25,25 @@ return(
         <div className="nav-elements">
           <ul>
             <li>
-              <NavLink to="/home">Home</NavLink>
+              <NavLink to="/home">Crypto</NavLink>
             </li>
             <li>
-              <NavLink to="/features">Features</NavLink>
+              <NavLink to="/features">Market</NavLink>
             </li>
             <li>
-              <NavLink to="/aboutus">About</NavLink>
+              <NavLink to="/aboutus">Watchlist</NavLink>
             </li>
             <li>
-              <NavLink to="/help">Contact us</NavLink>
+              <NavLink to="/help">About us</NavLink>
             </li>
-
+            <li>
+              <NavLink to="/help">Help</NavLink>
+            </li>
            
           </ul>
           
         </div>
-        <button onClick={userSignOut}>Sign out</button>
+        <button className='' onClick={userSignOut}>Sign out</button>
       </div>
     </nav>
 )
