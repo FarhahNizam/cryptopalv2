@@ -15,9 +15,7 @@ interface CoinData {
     ImageUrl: string;
     FullName: string;
     Name:string;
-  
   };
-
   DISPLAY:{
     USD:{
       PRICE:string;
@@ -25,9 +23,7 @@ interface CoinData {
       HIGH24HOUR:number;
       LOW24HOUR:number;
     }
-    
   }
-
 }
 
 const Carousel: React.FC = () => {
@@ -60,52 +56,58 @@ const Carousel: React.FC = () => {
 
     return (
       <Link className="carouselItem" to={``}>
-        <div className="cardcrypto">
-          <div className="containercrypto">
-            <div className="cloud front">
-              <span className="left-front"></span>
-              <span className="right-front"></span>
-            </div>
-            <span className="sun sunshine"></span>
-            <span className="sun">
-              <img
-                src={`https://www.cryptocompare.com${imageUrl}`}
-                alt={fullName}
-                height="200"
-                style={{ marginBottom: 20 }}
-              />
-            </span>
-            <div className="cloud back">
-              <span className="left-back"></span>
-              <span className="right-back"></span>
-            </div>
+      <div className="cardcrypto">
+        <div className="containercrypto">
+          <div className="cloud front">
+            <span className="left-front"></span>
+            <span className="right-front"></span>
           </div>
-
-          <div className="cardcrypto-header">
-           <p>Current price:{price}</p>
-            <span>High 24 Hour:{highhour}</span>
-            <span>Low 24 Hour:{lowhour}</span>
-          </div>
-
-          <span className="temp">{fullName}</span>
-
-          <div className="temp-scale">
-            <span>{changepct}</span>
+          <span className="sun sunshine"></span>
+          <span className="sun">
+            <img
+              src={`https://www.cryptocompare.com${imageUrl}`}
+              alt={fullName}
+              height="200"
+              style={{ marginBottom: 20 }}
+            />
+          </span>
+          <div className="cloud back">
+            <span className="left-back"></span>
+            <span className="right-back"></span>
           </div>
         </div>
 
-        <h1>{fullName}</h1>
-      </Link>
+        <div className="cardcrypto-header">
+         <p>Current price:{price}</p>
+          <span>High 24 Hour:{highhour}</span>
+          <span>Low 24 Hour:{lowhour}</span>
+        </div>
+
+        <span className="temp">{fullName}</span>
+
+        <div className="temp-scale">
+          <span>{changepct}</span>
+        </div>
+      </div>
+
+      <h1>{fullName}</h1>
+    </Link>
     );
   });
 
   const responsive = {
     0: {
+      items: 1,
+    },
+    768: {
       items: 2,
     },
-    512: {
+    1024: {
+      items: 3,
+    },
+    1200: {
       items: 4,
-    }
+    },
   };
 
   return (
@@ -119,7 +121,6 @@ const Carousel: React.FC = () => {
         disableButtonsControls
         responsive={responsive}
         items={items}
-        
       />
       <button onClick={fetchTop24HVol}></button>
     </div>
