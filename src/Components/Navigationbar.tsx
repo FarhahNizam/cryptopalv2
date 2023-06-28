@@ -6,7 +6,7 @@ import { auth } from "../services/firebaseconfig";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import Features  from '../Pages/Features';
-
+import Logo from '../Assets/Logo CryptoPal.svg';
 const NavBar: React.FC =() =>{
     let navigate=useNavigate();
     const userSignOut=()=>{
@@ -19,11 +19,13 @@ const NavBar: React.FC =() =>{
 return(
     <nav className="navbar">
       <div className="container">
-        <div className="logo">
-         
-        </div>
+     
+          <img className="logo" src={Logo} alt="CryptoPal Logo" />
+      
         <div className="nav-elements">
+        
           <ul>
+          
             <li>
               <NavLink to="/home">Crypto</NavLink>
             </li>

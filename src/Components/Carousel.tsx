@@ -1,34 +1,41 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from '@mui/styles';
+import React, { useState, useEffect, useRef } from "react";
+import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { TopList24H } from "../services/api";
 import CryptoContext, { CryptoState } from "../CryptoContext";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
-import 'react-alice-carousel/lib/alice-carousel.css';
+import "react-alice-carousel/lib/alice-carousel.css";
 import { CarouselItem } from "react-bootstrap";
-import '../styles/crypto.css';
+import "../styles/crypto.css";
+import positive from "../Assets/arrowup.svg";
+import negative from "../Assets/arrowdown.svg";
+import { IconButton } from "@mui/material";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import arrowleft from '../Assets/Arrow Left.svg';
+import arrowright from '../Assets/Arrow Right (1).svg'
 
 interface CoinData {
   CoinInfo: {
-    Id:string;
+    Id: string;
     ImageUrl: string;
     FullName: string;
-    Name:string;
+    Name: string;
   };
-  DISPLAY:{
-    USD:{
-      PRICE:string;
-      CHANGEPCT24HOUR:number;
-      HIGH24HOUR:number;
-      LOW24HOUR:number;
-    }
-  }
+  DISPLAY: {
+    USD: {
+      PRICE: string;
+      CHANGEPCT24HOUR: number;
+      HIGH24HOUR: number;
+      LOW24HOUR: number;
+    };
+  };
 }
 
 const Carousel: React.FC = () => {
   const [topList, setTopList] = useState<CoinData[]>([]);
   const { currency } = CryptoState();
+  const carouselRef = useRef<AliceCarousel | null>(null);
 
   const fetchTop24HVol = async () => {
     await fetch(TopList24H(currency))
@@ -46,52 +53,46 @@ const Carousel: React.FC = () => {
   }, [currency]);
 
   const items = topList.map((coin: CoinData) => {
-    const id=coin.CoinInfo.Id;
+    const id = coin.CoinInfo.Id;
     const imageUrl = coin.CoinInfo.ImageUrl;
     const fullName = coin.CoinInfo.FullName;
-    const price=coin.DISPLAY.USD.PRICE;
-    const changepct=coin.DISPLAY.USD.CHANGEPCT24HOUR;
-    const highhour=coin.DISPLAY.USD.HIGH24HOUR;
-    const lowhour=coin.DISPLAY.USD.LOW24HOUR;
+    const price = coin.DISPLAY.USD.PRICE;
+    const changepct = coin.DISPLAY.USD.CHANGEPCT24HOUR;
+    const highhour = coin.DISPLAY.USD.HIGH24HOUR;
+    const lowhour = coin.DISPLAY.USD.LOW24HOUR;
 
     return (
-      <Link className="carouselItem" to={``}>
-      <div className="cardcrypto">
-        <div className="containercrypto">
-          <div className="cloud front">
-            <span className="left-front"></span>
-            <span className="right-front"></span>
+      
+      <div className="carouselItem" key={id}>
+        <div className="cardcrypto">
+          <div className="containercrypto">
+            <span className="sun">
+              <img
+                src={`https://www.cryptocompare.com${imageUrl}`}
+                alt={fullName}
+                height="200"
+                style={{ marginBottom: 20 }}
+              />
+
+              <div className="carousel-card-details">
+                <span>{fullName}</span>
+                <p>{price}</p>
+              </div>
+            </span>
           </div>
-          <span className="sun sunshine"></span>
-          <span className="sun">
-            <img
-              src={`https://www.cryptocompare.com${imageUrl}`}
-              alt={fullName}
-              height="200"
-              style={{ marginBottom: 20 }}
-            />
-          </span>
-          <div className="cloud back">
-            <span className="left-back"></span>
-            <span className="right-back"></span>
+
+          <div className="temp-scale">
+            {changepct > 0 ? (
+              <img src={positive} alt="Positive" className="image-style" />
+            ) : (
+              <img src={negative} alt="Negative" className="image-style" />
+            )}
+            <span className={changepct > 0 ? "positive" : "negative"}>
+              {changepct}%
+            </span>
           </div>
-        </div>
-
-        <div className="cardcrypto-header">
-         <p>Current price:{price}</p>
-          <span>High 24 Hour:{highhour}</span>
-          <span>Low 24 Hour:{lowhour}</span>
-        </div>
-
-        <span className="temp">{fullName}</span>
-
-        <div className="temp-scale">
-          <span>{changepct}</span>
         </div>
       </div>
-
-      <h1>{fullName}</h1>
-    </Link>
     );
   });
 
@@ -110,19 +111,55 @@ const Carousel: React.FC = () => {
     },
   };
 
+  const handlePrevButtonClick = () => {
+    if (carouselRef.current) {
+      carouselRef.current.slidePrev();
+    }
+  };
+
+  const handleNextButtonClick = () => {
+    if (carouselRef.current) {
+      carouselRef.current.slideNext();
+    }
+  };
+
+  const renderPrevButton = () => (
+    <IconButton className="carousel-button prev-button" onClick={handlePrevButtonClick}>
+      <img className="image-style" src={arrowleft} alt="Arrow Left" />
+    </IconButton>
+  );
+
+  const renderNextButton = () => (
+    <IconButton className="carousel-button next-button" onClick={handleNextButtonClick}>
+      <img className="image-style" src={arrowright} alt="Arrow Left" />
+    </IconButton>
+  );
+
   return (
-    <div className="carousel">
-      <AliceCarousel
-        mouseTracking
-        infinite
-        autoPlayInterval={1000}
-        animationDuration={1500}
-        disableDotsControls
-        disableButtonsControls
-        responsive={responsive}
-        items={items}
-      />
-      <button onClick={fetchTop24HVol}></button>
+    <div className="Container">
+      <div className="carousel-background">
+        <div className="carousel-page-content">
+        <span className="content-title"> Trending currencies</span>
+    <span>Explore market’s high growth cryptocurrencies.</span>
+        </div>
+    
+
+        <div className="carousel">
+          <div>{renderPrevButton()}</div>
+          <AliceCarousel
+            mouseTracking
+            infinite
+            autoPlayInterval={1000}
+            animationDuration={1500}
+            disableDotsControls
+            responsive={responsive}
+            items={items}
+          disableButtonsControls
+            ref={(el) => (carouselRef.current = el)}
+          />
+          <div>{renderNextButton()}</div>
+        </div>
+      </div>
     </div>
   );
 };
