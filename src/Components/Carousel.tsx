@@ -138,9 +138,10 @@ const Carousel: React.FC = () => {
   return (
     <div className="Container">
       <div className="carousel-background">
+        
         <div className="carousel-page-content">
         <span className="content-title"> Trending currencies</span>
-    <span>Explore market’s high growth cryptocurrencies.</span>
+    <span className="content-paragraph">Explore market’s high growth cryptocurrencies.</span>
         </div>
     
 

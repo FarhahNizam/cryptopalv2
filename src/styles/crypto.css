@@ -292,9 +292,7 @@ font-weight: 500;
   flex-direction: column;
   text-align: center;
   color: white;
-  font-size: 40;
-  font-weight: 400;
-
+  padding-top: 150px;
 }
 
 .logo{
@@ -319,4 +317,5 @@ font-weight: 500;
   font-size: 32px;
   font-family: roboto;
   color:#fff;
+  font-weight: 400;
 }
