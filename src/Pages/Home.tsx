@@ -6,12 +6,22 @@ import RealTimeChart from "../Components/Realtimechart";
 import LifeChart from "../Components/LifeChart";
 import WebSocketConnection from "../services/WebsocketConnection";
 import '../styles/crypto.css';
+import LandingPage from "../Components/LandingPage";
+import OurFeatures from "../Components/OurFeatures";
+import CryptoTable from "../Components/CryptoTable";
+import ExploreCryptocurrency from "../Components/ExploreCryptocurrency";
+import Footer from "../Components/Footer";
 const Home=() => {
     return(
         <div>
-            <NavBar/>
+            
 <div className="Container"> 
+<NavBar/>
+<LandingPage />
 <Carousel />
+<OurFeatures />
+<ExploreCryptocurrency />
+{/* <Footer /> */}
          {/* <LifeChart /> */}
          </div>
         </div>

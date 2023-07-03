@@ -43,7 +43,30 @@
     width: 130px;
     height: 52;
   }
+
+  .long-button{
+    background-color: #BB0163;
+    height: 72px;
+    width:529px;
+    color: #fff;
+    border-radius: 32px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 35px;
+    font-family: Roboto;
+    font-weight: 200;
+  }
   
+  .icon-button{
+    margin: 10px 15px;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 32px;
+    background-color: #BB0163;
+    color: #fff;
+    cursor: pointer;
+    width: 80px;
+    height: 60px;
+  }
 
   .container {
     max-width: 1100px;
@@ -55,11 +78,18 @@
     height: 100%;
   }
   
+ .footerbar{
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+ }
   .navbar {
     height: 60px;
-    background-color: #fff8e6;
+    background-color: #ffffff;
     position: relative;
   }
+  
   
 
   .nav-elements ul {
@@ -284,6 +314,17 @@ font-weight: 500;
   width:30px;
   height:30px;
 }
+
+.left-right-style{
+  width: 50px;
+  height: 50px;
+}
+
+.search-icon{
+  width: 40px;
+  height: 40px;
+
+}
 .carousel-page-content{
   justify-content: center;
   line-height: 500%;
@@ -302,10 +343,38 @@ font-weight: 500;
 
 .Container{
   width: 100vw; 
-  height: 100vh; 
-  overflow: hidden; 
+  height: 100vh;  
+  height: 100vh; /* Set the desired height */
+  overflow-y: auto; 
 }
 
+.landing-page{
+  padding-top: 200px;
+  padding-left: 100px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100px;
+  
+
+}
+
+.landing-page > * {
+  margin-bottom: 20px; /* Adjust this value to set the desired spacing */
+}
+.landing-page-title{
+  font-size: 80px;
+  font-family: roboto;
+  font-weight: 800;
+  color:#BB0163;
+
+}
+
+.landing-page-paragraph{
+  font-size: 35px;
+  font-family: roboto;
+  color:#7A7A7A;
+
+}
 .content-title{
   font-size: 50px;
   font-family: roboto;
@@ -318,4 +387,131 @@ font-weight: 500;
   font-family: roboto;
   color:#fff;
   font-weight: 400;
+}
+
+.LandingPage{
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../Assets/Header.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.FeaturePageBackground{
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../Assets/ourfeatues.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.feature-page {
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 65%;
+  text-align: left;
+}
+
+.feature-page > * {
+  margin-bottom: 10px; /* Adjust this value to set the desired spacing */
+}
+
+.feature-page-paragraph{
+  font-size: 32px;
+  font-family: roboto;
+  color:#fff;
+  font-weight: 800;
+
+}
+
+.feature-page-paragraph-sub{
+  font-size: 26px;
+  font-family: roboto;
+  color:#fff;
+  margin-bottom: 80px;
+}
+.scrollable-container {
+  height: 100vh; /* Set the desired height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.card-table{
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.CryptotablePageBackground{
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../Assets/tradesecurely.svg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.containerStyle{
+  margin-left: 10%;
+  margin-right: 10%;
+  z-index: 1;
+    opacity: 1; 
+
+  
+}
+
+.cardStyle{
+  border-radius:15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0);
+  padding: 20px;
+  opacity: 1; 
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.9); 
+ 
+  z-index: 1;
+}
+
+
+
+.tableStyle {
+  border-spacing: 10px;
+  width: 100%;
+  opacity: 1; 
+
+
+}
+
+.thStyle {
+  padding: 10px;
+  background-color: #f2f2f2;
+  
+}
+
+.tdStyle {
+  padding: 20px;
+}
+
+.explorecrypto-page{
+ justify-content: center;
+ align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100px;
+}
+
+.explorecrypto-page-title{
+  font-size: 50px;
+  font-family: roboto;
+  font-weight: 800;
+  color:#ffffff;
+
+}
+
+.explorecrypto-page-paragraph{
+  font-size: 32px;
+  font-family: roboto;
+  color:#7A7A7A;
+
 }

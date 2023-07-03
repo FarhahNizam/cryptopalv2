@@ -125,20 +125,20 @@ const Carousel: React.FC = () => {
 
   const renderPrevButton = () => (
     <IconButton className="carousel-button prev-button" onClick={handlePrevButtonClick}>
-      <img className="image-style" src={arrowleft} alt="Arrow Left" />
+      <img className="left-right-style" src={arrowleft} alt="Arrow Left" />
     </IconButton>
   );
 
   const renderNextButton = () => (
     <IconButton className="carousel-button next-button" onClick={handleNextButtonClick}>
-      <img className="image-style" src={arrowright} alt="Arrow Left" />
+      <img className="left-right-style" src={arrowright} alt="Arrow Left" />
     </IconButton>
   );
 
   return (
-    <div className="Container">
+    <div className="">
       <div className="carousel-background">
-        
+
         <div className="carousel-page-content">
         <span className="content-title"> Trending currencies</span>
     <span className="content-paragraph">Explore market’s high growth cryptocurrencies.</span>

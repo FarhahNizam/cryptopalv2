@@ -2,15 +2,18 @@ import React from "react";
 import NavBar from "../Components/Navigationbar";
 import RealTimeChart from "../Components/Realtimechart";
 import WebSocketConnection from "../services/WebsocketConnection";
+import "../styles/crypto.css"
 const Features=() => {
     return(
-        <div>
-             <NavBar />
-             <h1>Market</h1>
-           <RealTimeChart />
+        <>
+       <div className="">
+        <NavBar />
+         <RealTimeChart />
+       </div>
+        
              
             
-        </div>
+        </>
     )
 
 }
