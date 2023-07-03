@@ -21,8 +21,10 @@ const Home=() => {
 <Carousel />
 <OurFeatures />
 <ExploreCryptocurrency />
-{/* <Footer /> */}
-         {/* <LifeChart /> */}
+<Footer />
+
+  
+      
          </div>
         </div>
     )

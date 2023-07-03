@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { TextField, IconButton, InputAdornment } from '@mui/material';
+import { TextField, IconButton } from '@mui/material';
 import search from '../Assets/search.svg';
 import "../styles/crypto.css"
-
-
-
+import searchnotfound from '../Assets/errorsearchresults.svg';
 const tableStyle = {
   borderSpacing: '10px',
   width: '100%',
-  
-  
 };
 
 const thStyle = {
   padding: '10px',
   backgroundColor: '#f2f2f2',
-  
 };
 
 const tdStyle = {
@@ -69,51 +64,54 @@ const CryptoTable: React.FC = () => {
 
   return (
     <div className="containerStyle">
-   
       <div className="cardStyle">
-      <TextField
-       sx={{
-        width: '85%'
-    }}
-        label="Search currency here"
-        variant="standard"
-        value={searchTerm}
-        onChange={handleInputChange}
-        style={{ marginBottom: '10px',margin:'20px' }}
-      />
-    <button className='icon-button' >
-      <img className="search-icon" src={search} alt="Arrow Left" />
-    </button>
+        <TextField
+          sx={{
+            width: '85%'
+          }}
+          label="Search currency here"
+          variant="standard"
+          value={searchTerm}
+          onChange={handleInputChange}
+          style={{ marginBottom: '10px', margin: '20px' }}
+        />
+        <button className='icon-button' >
+          <img className="search-icon" src={search} alt="Arrow Left" />
+        </button>
 
-        <table className="tableStyle">
-          <thead>
-            {/* <tr>
-              <th style={thStyle}>Crypto Full Name</th>
-              <th style={thStyle}>Price</th>
-              <th style={thStyle}>Change Percent (24 hours)</th>
-            </tr> */}
-          </thead>
-          <tbody>
-            {filteredData.map((coin) => (
-              <tr key={coin.CoinInfo.Id}>
-                <td className="tdStyle">
-                  <img
-                    src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
-                    height="50"
-                    style={{ marginBottom: 10 }}
-                  />
-                  {coin.CoinInfo.FullName}
-                </td>
-                <td className="tdStyle">{coin.DISPLAY.USD.PRICE}</td>
-                <td className="tdStyle">{coin.DISPLAY.USD.CHANGEPCT24HOUR}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {filteredData.length > 0 ? (
+          <table className="tableStyle">
+            <tbody>
+              {filteredData.map((coin) => (
+                <tr key={coin.CoinInfo.Id}>
+                  <td className="tdStyle">
+                    <img
+                      src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
+                      height="50"
+                      style={{ marginBottom: 10 }}
+                    />
+                    {coin.CoinInfo.FullName}
+                  </td>
+                  <td className="tdStyle">{coin.DISPLAY.USD.PRICE}</td>
+                 
+                  <td className={coin.DISPLAY.USD.CHANGEPCT24HOUR>0 ? "positive":"negative"}>{coin.DISPLAY.USD.CHANGEPCT24HOUR}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div style={{ textAlign: 'center' }}>
+            <img
+              src={searchnotfound} // Replace with the URL of the random image
+              alt="No results found"
+              style={{ height: '20%', width:'30%', marginBottom: '10px' }}
+            />
+            <span className='error-title'>No results found.</span>
+          </div>
+        )}
       </div>
     </div>
   );
 };
-
 
 export default CryptoTable;
