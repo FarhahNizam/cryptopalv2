@@ -94,7 +94,10 @@ const CryptoTable: React.FC = () => {
                   </td>
                   <td className="tdStyle">{coin.DISPLAY.USD.PRICE}</td>
                  
-                  <td className={coin.DISPLAY.USD.CHANGEPCT24HOUR>0 ? "positive":"negative"}>{coin.DISPLAY.USD.CHANGEPCT24HOUR}%</td>
+                  <td className={coin.DISPLAY.USD.CHANGEPCT24HOUR>0 ? "positive":"negative"}>
+                  { coin.DISPLAY.USD.CHANGEPCT24HOUR> 0 ? '+' : '-'}
+
+                    {coin.DISPLAY.USD.CHANGEPCT24HOUR}%</td>
                 </tr>
               ))}
             </tbody>

@@ -1,13 +1,13 @@
 import React from "react";
 import NavBar from "../Components/Navigationbar";
-import RealTimeChart from "../Components/Realtimechart";
-import WebSocketConnection from "../services/WebsocketConnection";
+
 import "../styles/crypto.css"
-const Features=() => {
+const Market=() => {
     return(
         <>
        <div className="">
         <NavBar />
+        <p>Market</p>
        </div>
         
              
@@ -17,4 +17,4 @@ const Features=() => {
 
 }
 
-export default Features;
+export default Market;

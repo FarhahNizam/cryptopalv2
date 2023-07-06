@@ -1,38 +1,35 @@
-import React, { useState,useEffect } from "react";
-import { auth } from "../services/firebaseconfig";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import React from 'react';
+import { observer } from 'mobx-react';
+import rootStore from '../stores/RootStore';
+import { auth } from '../services/firebaseconfig';
+import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
+const AuthDetails: React.FC = observer(() => {
+  let navigate = useNavigate();
 
+  const userSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log('Sign out successful');
+        rootStore.authStore.clearAuthUser();
+        navigate('/');
+      })
+      .catch(error => console.log(error));
+  };
 
-const AuthDetails: React.FC = () => {
-    const[authUser,setAuthUser]=useState(null);
-    let navigate=useNavigate();
-   useEffect(()=>{
-    const listen=onAuthStateChanged(auth,(user:any)=>{
-        if(user){
-            setAuthUser(user);
-            navigate("/home"); 
-        }else{
-            setAuthUser(null);
-        }
-    });
-    return ()=>{
-        listen();
-    }
-   },[]);
-
-   const userSignOut=()=>{
-    signOut(auth).then(()=>{
-        console.log('sign out successful');
-        navigate("/signin")
-    }).catch(error=>console.log(error))
-   }
-return(
+  return (
     <div>
-        {authUser? <><p>{`Signed in as ${authUser}`}</p> <button onClick={userSignOut}>Sign out</button></>:<p></p>}
+      {rootStore.authStore.authUser ? (
+        <>
+          <p>{`Signed in as ${rootStore.authStore.authUser}`}</p>
+          <button onClick={userSignOut}>Sign out</button>
+        </>
+      ) : (
+        <p></p>
+      )}
     </div>
-)
-}
+  );
+});
 
 export default AuthDetails;

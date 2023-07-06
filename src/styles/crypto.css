@@ -7,11 +7,12 @@
   }
   
   .card {
-    width: 400px; 
-    height: 300px; 
+    width: 515px; 
+    height: 280px; 
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
@@ -40,8 +41,8 @@
     background-color: #BB0163;
     color: #fff;
     cursor: pointer;
-    width: 130px;
-    height: 52;
+    width: 100px;
+    height: 52px;
   }
 
   .long-button{
@@ -155,16 +156,22 @@
   .tab-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    background-color: #EBF2FF;
+    width: 515px;
+    border-top-right-radius: 32px ;
+    border-top-left-radius: 32px;
+    height: 50px;
+    padding: 20px;
   
   }
   
   .tab {
     cursor: pointer;
     padding: 10px 20px;
-    background-color: #cccccc;
+    background-color:#EBF2FF;
     margin-right: 10px;
     border-radius: 13px;
+
   }
   
   .tab.active {
@@ -580,4 +587,110 @@ font-weight: 500;
   justify-content: center;
   align-items: center;
 
+}
+
+.modal {
+  position: fixed;
+  width: 600px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 32px;
+
+
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background color */
+  z-index: 9999; /* Set a higher z-index value */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.coindetails-page{
+  display: flex;
+  flex-direction: row;
+  background-color: #F9FAFD;
+  width: 100%;
+  height: 141px;
+
+}
+
+coindetails-page-title span{
+  font-weight: 700;
+  font-size: 30px;
+}
+.coindetails-image{
+  display: flex;
+  flex: 1;
+}
+
+
+.coindetails-title{
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+  font-size: 40px;
+  font-weight: 500;
+  padding: 2%;
+  
+}
+.coindetails-price{
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  margin-top: 2.5%;
+  
+}
+.coindetails-price-content{
+  font-size: 27px;
+  font-weight: 800;
+
+}
+
+.coindetails-symbol{
+  font-size: 25px;
+  color: #7A7A7A;;
+  font-weight: 300;
+  padding: 2%;
+}
+
+.card-livechart{
+  background-color:#f9f9f9;
+  border-radius: 32px;
+  width:1500px;
+  height: 500px;
+  margin: 5%;
+}
+
+
+.coindetails-percentage{
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  margin-top: 2%;
+}
+
+.vl {
+  border-left: 6px solid #E7EAEE;
+  height: 60px;
+  position: relative;
+  margin-top:2%;
+  margin-right: 10px;
 }

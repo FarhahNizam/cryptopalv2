@@ -1,36 +1,50 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-import { Container } from 'react-bootstrap';
-import React, { useState,useEffect } from "react";
-import { auth } from "../services/firebaseconfig";
-import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-import Features  from '../Pages/Features';
+import { observer } from 'mobx-react';
+import rootStore from '../stores/RootStore';
 import Logo from '../Assets/Logo CryptoPal.svg';
-const NavBar: React.FC =() =>{
-    let navigate=useNavigate();
-    const userSignOut=()=>{
-        signOut(auth).then(()=>{
-            console.log('sign out successful');
-            navigate("/")
-        }).catch(error=>console.log(error))
-       }
+import AuthDetails from './AuthDetails';
+import Consolepage from '../Pages/Consolepage';
+import '../styles/crypto.css';
+const NavBar: React.FC = observer(() => {
+  let navigate = useNavigate();
 
-return(
+  const userSignOut = () => {
+    rootStore.authStore.clearAuthUser();
+    navigate('/consolepage');
+  };
+
+  const openModal = () => {
+
+    navigate('/consolepage');
+  };
+
+  const renderAuthButton = () => {
+    if (rootStore.authStore.isSignedIn) {
+      // User is logged in, show sign out button
+      return (
+        <button className="" onClick={userSignOut}>
+          Sign out
+        </button>
+      );
+    } else {
+      // User is logged out, show login button
+      return <button onClick={openModal}> Log in</button>; // or remove this line if you want to render nothing when user is logged out
+    }
+  };
+
+  return (
     <nav className="navbar">
       <div className="container">
-     
-          <img className="logo" src={Logo} alt="CryptoPal Logo" />
-      
+        <img className="logo" src={Logo} alt="CryptoPal Logo" />
         <div className="nav-elements">
-        
           <ul>
-          
             <li>
               <NavLink to="/home">Crypto</NavLink>
             </li>
             <li>
-              <NavLink to="/features">Market</NavLink>
+              <NavLink to="/market">Market</NavLink>
             </li>
             <li>
               <NavLink to="/aboutus">Watchlist</NavLink>
@@ -41,14 +55,13 @@ return(
             <li>
               <NavLink to="/help">Help</NavLink>
             </li>
-           
           </ul>
-          
         </div>
-        <button className='' onClick={userSignOut}>Sign out</button>
+
+        <Consolepage />
       </div>
     </nav>
-)
-}
+  );
+});
 
 export default NavBar;
