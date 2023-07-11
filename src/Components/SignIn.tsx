@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { getAuth, signInWithEmailAndPassword, AuthError } from "firebase/auth";
-import "../styles/crypto.css";
-import { auth } from "../services/firebaseconfig";
-import { IconButton } from "@mui/material";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import AuthDetails from "../Components/AuthDetails";
-import { useNavigate } from "react-router-dom";
-
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { getAuth, signInWithEmailAndPassword, AuthError } from 'firebase/auth';
+import { IconButton } from '@mui/material';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../styles/crypto.css';
+import { auth } from '../services/firebaseconfig';
+import AuthDetails from '../Components/AuthDetails';
+import { useNavigate } from 'react-router-dom';
 
 interface UserInput {
   email: string;
@@ -15,12 +16,17 @@ interface UserInput {
 }
 
 const SignIn: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, setError } = useForm<UserInput>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError
+  } = useForm<UserInput>();
   const [showPassword, setShowPassword] = useState(false);
 
-  let history=useNavigate();
+  let history = useNavigate();
   const redirectToLogin = () => {
-    history("/home");
+    history('/home');
     // Replace "/login" with the actual login route
   };
 
@@ -29,13 +35,18 @@ const SignIn: React.FC = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log("User signed in successfully!");
-      redirectToLogin();
+      console.log('User signed in successfully!');
+
+      // Display success toast message
+      toast.success('Logged in successfully!', {
+        position: toast.POSITION.TOP_CENTER
+      });
+      history('/home');
     } catch (error: any) {
-      if (error.code === "auth/wrong-password") {
-        setError("password", { message: "Invalid password.Please try again" });
+      if (error.code === 'auth/wrong-password') {
+        setError('password', { message: 'Invalid password. Please try again' });
       } else {
-        console.log("Error signing in:", error.message);
+        console.log('Error signing in:', error.message);
       }
     }
   };
@@ -50,25 +61,25 @@ const SignIn: React.FC = () => {
         <h2>Sign In</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="form">
-          <input type="email" placeholder="Email" {...register("email")} />
+          <input type="email" placeholder="Email" {...register('email')} />
 
           <div className="password-input">
             <input
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
-              {...register("password", {
-                required: "Password is required",
+              {...register('password', {
+                required: 'Password is required',
                 minLength: {
                   value: 8,
-                  message: "Password should have a minimum of 8 characters"
+                  message: 'Password should have a minimum of 8 characters'
                 },
                 maxLength: {
-                value:120,
-                message:"Password should not have more than 120 characters"
+                  value: 120,
+                  message: 'Password should not have more than 120 characters'
                 },
                 pattern: {
                   value: /^(?=.*?[!@#$%^&*(),.?":{}|<>]).{8,}$/,
-                  message: "Password should contain at least one symbol"
+                  message: 'Password should contain at least one symbol'
                 }
               })}
             />
@@ -77,12 +88,17 @@ const SignIn: React.FC = () => {
             </IconButton>
           </div>
           {errors.password && <p className="error-message">{errors.password.message}</p>}
-          <button type="submit">Sign In</button>
+          <div className="button-form">
+            <button className="form-button" type="submit">
+              Sign in
+            </button>
+          </div>
         </form>
       </div>
       <div>
         <AuthDetails />
       </div>
+      <ToastContainer />
     </div>
   );
 };

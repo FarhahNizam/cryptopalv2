@@ -56,6 +56,18 @@
     font-family: Roboto;
     font-weight: 200;
   }
+
+  .form-button{
+    margin: 10px 15px;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 32px;
+    background-color: #BB0163;
+    color: #fff;
+    cursor: pointer;
+    width: 150px;
+    height: 52px;
+  }
   
   .icon-button{
     margin: 10px 15px;
@@ -514,19 +526,17 @@ font-weight: 500;
 
 .cardStyle{
   border-radius:15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0);
-  padding: 20px;
+  margin: 0px 8%;
   opacity: 1; 
   position: relative;
   background-color: rgba(255, 255, 255, 0.9); 
  
-  z-index: 1;
 }
 
 
 
 .tableStyle {
-  border-spacing: 10px;
+  border-spacing: 20px;
   width: 100%;
   opacity: 1; 
 
@@ -534,13 +544,23 @@ font-weight: 500;
 }
 
 .thStyle {
-  padding: 10px;
-  background-color: #f2f2f2;
+  font-family: Manrope;
+  color: #64748B;
+text-align:left;
+
+  
   
 }
 
 .tdStyle {
-  padding: 20px;
+  font-family: Roboto;
+}
+
+
+.tableimage-fullname{
+  flex-direction: row;
+  display: flex;
+
 }
 
 .explorecrypto-page{
@@ -597,6 +617,7 @@ font-weight: 500;
   justify-content: center;
   align-items: center;
   border-radius: 32px;
+  max-height: 80vh; /* Set a maximum height for the modal */
 
 
 }
@@ -632,9 +653,14 @@ font-weight: 500;
 
 }
 
-coindetails-page-title span{
+.coindetails-page-title{
   font-weight: 700;
-  font-size: 30px;
+  font-size: 47px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-left: 9%;
+  font-family: Roboto;
 }
 .coindetails-image{
   display: flex;
@@ -649,6 +675,7 @@ coindetails-page-title span{
   font-size: 40px;
   font-weight: 500;
   padding: 2%;
+  font-family: Roboto;
   
 }
 .coindetails-price{
@@ -669,6 +696,23 @@ coindetails-page-title span{
   color: #7A7A7A;;
   font-weight: 300;
   padding: 2%;
+  font-family: Roboto;
+}
+
+.coindetails-symbol2{
+  font-size: 16px;
+  color: black;;
+  font-weight: 300;
+  padding: 2%;
+  font-family: Roboto;
+}
+.markettable-symbol{
+  color: #979797;
+  font-family: Roboto;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  padding-top: 2%;
 }
 
 .card-livechart{
@@ -693,4 +737,65 @@ coindetails-page-title span{
   position: relative;
   margin-top:2%;
   margin-right: 10px;
+}
+
+.market-search{
+  display: flex;
+  flex-direction: row;
+ 
+flex: 1;
+}
+.market-tabs{
+  display: flex;
+  flex:1;
+
+}
+.button-tabs{
+  width: 100px;
+  height: 50px;
+  background-color: #F5F5F5;
+  font-size: 16px;
+  font-family: Roboto;
+  color:#7A7A7A ;
+
+}
+
+.card-style-cryptotable{
+  border-radius:15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0);
+  padding: 20px;
+  opacity: 1; 
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.9); 
+ 
+  z-index: 1;
+}
+
+.pagination-pills{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-form{
+  display: flex;
+  justify-content: center;
+}
+.error-message{
+  color: red;
+  font-size: 15px;
+  margin: 1px;
+  
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px #f4ad42, 0 0 20px #f4ad42, 0 0 40px #f4ad42, 0 0 60px #f4ad42;
+  }
+  100% {
+    box-shadow: 0 0 5px #f4ad42, 0 0 20px #f4ad42, 0 0 40px #f4ad42, 0 0 80px #f4ad42;
+  }
+}
+
+.tableimage-fullname:hover {
+  animation: glowing 1s infinite;
 }
