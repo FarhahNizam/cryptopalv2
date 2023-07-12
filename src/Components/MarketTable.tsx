@@ -33,11 +33,18 @@ interface CoinData {
       LOW24HOUR: number;
     };
   };
+  RAW: {
+    USD: {
+      MKTCAP: number;
+      VOLUME24HOURTO: number;
+    };
+  };
 }
 
 interface ApiResponse {
-  Response: any;
+  Response: string;
   Data: CoinData[];
+  Type: number;
 }
 
 const itemsPerPage = 10; // Number of items per page
@@ -47,34 +54,34 @@ const MarketTable: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const [pagenum, setPagenum] = useState(0);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://min-api.cryptocompare.com/data/top/totalvolfull?limit=${itemsPerPage}&tsym=USD&page=${pagenum}`
+        'https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=USD'
       );
+
       const jsonData: ApiResponse = await response.json();
+      console.log(jsonData.Data);
       setData(jsonData.Data);
+      console.log(jsonData.Data);
       setTotalPages(Math.ceil(jsonData.Data.length / itemsPerPage));
     };
 
     fetchData();
-  }, [pagenum]);
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
   const handlePreviousPage = () => {
-    const nextPage = pagenum - 1;
-    setPagenum(nextPage);
+    setCurrentPage((prevPage) => prevPage - 1);
   };
 
   const handleNextPage = () => {
-    const nextPage = pagenum + 1;
-    setPagenum(nextPage);
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
   const handleHighestButtonClick = () => {
@@ -87,9 +94,12 @@ const MarketTable: React.FC = () => {
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const paginatedData = data.slice(startIndex, endIndex);
 
-  const sortedData = [...paginatedData].sort((a, b) => {
+  const filteredData = data.filter((coin) =>
+    coin.CoinInfo.FullName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const sortedData = [...filteredData].sort((a, b) => {
     const priceA = parseFloat(a.DISPLAY?.USD?.PRICE) || 0;
     const priceB = parseFloat(b.DISPLAY?.USD?.PRICE) || 0;
 
@@ -100,9 +110,7 @@ const MarketTable: React.FC = () => {
     }
   });
 
-  const filteredData = sortedData.filter((coin) =>
-    coin.CoinInfo.FullName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const paginatedData = sortedData.slice(startIndex, endIndex);
 
   return (
     <div className="cardStyle">
@@ -146,10 +154,12 @@ const MarketTable: React.FC = () => {
               <th className="thStyle">Currency</th>
               <th className="thStyle">Price</th>
               <th className="thStyle">Status</th>
+              <th className="thStyle">Market Cap</th>
+              <th className="thStyle">Volume (24h)</th>
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((coin) => (
+            {paginatedData.map((coin) => (
               <tr key={coin.CoinInfo.Id}>
                 <td className="tdStyle">
                   <div className="tableimage-fullname">
@@ -168,6 +178,8 @@ const MarketTable: React.FC = () => {
                   {coin.DISPLAY?.USD?.CHANGEPCT24HOUR > 0 ? '+' : ''}
                   {coin.DISPLAY?.USD?.CHANGEPCT24HOUR}%
                 </td>
+                <td className="tdStyle">{coin.RAW?.USD?.MKTCAP}</td>
+                <td className="tdStyle">{coin.RAW?.USD?.VOLUME24HOURTO}</td>
               </tr>
             ))}
           </tbody>
@@ -185,9 +197,9 @@ const MarketTable: React.FC = () => {
 
       <div className="pagination-pills">
         <Pagination
-          count={10}
-          page={pagenum + 1}
-          onChange={(event, page) => setPagenum(page - 1)}
+          count={totalPages}
+          page={currentPage + 1}
+          onChange={(event, page) => setCurrentPage(page - 1)}
           variant="outlined"
           shape="rounded"
           boundaryCount={2}

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { observer } from 'mobx-react';
+import authStore from '../stores/AuthStore';
 import SignIn from '../Components/SignIn';
 import SignUp from '../Components/SignUp';
-import '../styles/crypto.css'; // Import the CSS file for Consolepage component
+import '../styles/crypto.css';
+import rootStore from '../stores/RootStore';
 
-const Consolepage = () => {
+const Consolepage: React.FC = observer(() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState<'SignIn' | 'SignUp'>('SignIn');
 
@@ -20,12 +23,33 @@ const Consolepage = () => {
     setIsModalOpen(false);
   };
 
+  const handleSignInSuccess = () => {
+    closeModal();
+  };
+
+  const renderAuthButton = () => {
+    if (rootStore.authStore.isSignedIn) {
+      // User is signed in, show sign-out button
+      return (
+        <button onClick={handleSignOut}>Sign Out</button>
+      );
+    } else {
+      // User is not signed in, show sign-in button
+      return (
+        <button onClick={openModal}>Sign In</button>
+      );
+    }
+  };
+
+  const handleSignOut = () => {
+    rootStore.authStore.clearAuthUser();
+  };
+
   return (
     <div>
-      <button onClick={openModal}>Log in</button>
-      
+      {renderAuthButton()}
       {isModalOpen && (
-        <div className="overlay"> {/* Add overlay class */}
+        <div className="overlay">
           <div className="modal">
             <div className="modal-content">
               <div className="tab-container">
@@ -48,11 +72,8 @@ const Consolepage = () => {
           </div>
         </div>
       )}
-     
-
     </div>
   );
-};
+});
 
 export default Consolepage;
-

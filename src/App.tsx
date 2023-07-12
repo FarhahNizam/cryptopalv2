@@ -13,12 +13,16 @@ import Features from '../src/Pages/Features';
 import CloseButton from 'react-bootstrap';
 import CoinDetailsPage from './Components/CoinDetails';
 import Market from '../src/Pages/Market';
-
+import { Provider, observer } from 'mobx-react';
+import AuthStore from './stores/AuthStore';
+import authStore from './stores/AuthStore';
 const App: React.FC =() => {
 
   return (
+    
     <>
-
+    
+    <Provider authStore={authStore}> 
     <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Consolepage" element={<Consolepage />} />
@@ -36,10 +40,10 @@ const App: React.FC =() => {
             <Route path="/coin-details/:coinName" element={<CoinDetailsPage />} />
     </Routes>
 
-  
+</Provider>
   </>
    
   );
 }
 
-export default App;
+export default observer(App);

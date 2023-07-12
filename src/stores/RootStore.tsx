@@ -17,12 +17,13 @@ const firebase = initializeApp(firebaseConfig);
 export const auth = getAuth(firebase);
 
 class RootStore {
-  authStore: AuthStore;
+  authStore: typeof AuthStore; // Updated type
 
   constructor() {
-    this.authStore = new AuthStore();
+    this.authStore = AuthStore; // Assign the class reference
   }
 }
 
 const rootStore = new RootStore();
+
 export default rootStore;

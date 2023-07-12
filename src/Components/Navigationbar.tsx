@@ -59,6 +59,7 @@ const NavBar: React.FC = observer(() => {
         </div>
 
         <Consolepage />
+
       </div>
     </nav>
   );

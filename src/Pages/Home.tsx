@@ -23,7 +23,7 @@ const Home=() => {
 <ExploreCryptocurrency />
 <Footer />
 
-  
+  <AuthDetails />
       
          </div>
         </div>
