@@ -6,6 +6,7 @@ import { auth } from "../services/firebaseconfig";
 import { IconButton } from "@mui/material";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthDetails from "../Components/AuthDetails";
+import { useNavigate } from "react-router-dom";
 
 interface UserInput {
   email: string;
@@ -13,8 +14,19 @@ interface UserInput {
 }
 
 const SignIn: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, setError } = useForm<UserInput>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm<UserInput>();
   const [showPassword, setShowPassword] = useState(false);
+
+  let history = useNavigate();
+  const redirectToLogin = () => {
+    history("/home");
+    // Replace "/login" with the actual login route
+  };
 
   const onSubmit = async (data: UserInput) => {
     const { email, password } = data;
@@ -22,6 +34,7 @@ const SignIn: React.FC = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User signed in successfully!");
+      redirectToLogin();
     } catch (error: any) {
       if (error.code === "auth/wrong-password") {
         setError("password", { message: "Invalid password.Please try again" });
@@ -36,7 +49,7 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <div className="page">
+    <div>
       <div className="card">
         <h2>Sign In</h2>
 
@@ -51,23 +64,25 @@ const SignIn: React.FC = () => {
                 required: "Password is required",
                 minLength: {
                   value: 8,
-                  message: "Password should have a minimum of 8 characters"
+                  message: "Password should have a minimum of 8 characters",
                 },
                 maxLength: {
-                value:120,
-                message:"Password should not have more than 120 characters"
+                  value: 120,
+                  message: "Password should not have more than 120 characters",
                 },
                 pattern: {
                   value: /^(?=.*?[!@#$%^&*(),.?":{}|<>]).{8,}$/,
-                  message: "Password should contain at least one symbol"
-                }
+                  message: "Password should contain at least one symbol",
+                },
               })}
             />
             <IconButton type="button" onClick={togglePasswordVisibility}>
               {showPassword ? <FaEye /> : <FaEyeSlash />}
             </IconButton>
           </div>
-          {errors.password && <p className="error-message">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="error-message">{errors.password.message}</p>
+          )}
           <button type="submit">Sign In</button>
         </form>
       </div>

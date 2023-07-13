@@ -76,7 +76,7 @@ const RealTimeChart = () => {
 
   return (
     <div>
-      <WebSocketConnection />
+      <WebSocketConnection  name="BTC" />
       <Line data={data} options={options} style={{ height: '500px', width: '80%' }} />
     </div>
   );

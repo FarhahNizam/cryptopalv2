@@ -57,7 +57,7 @@ const SignUp: React.FC = () => {
     return (
       <Alert severity="success">User successfully registered!</Alert>
     );
-    // Code to display success alert (you can use any library of your choice)
+    // Code to display success alert
   };
 
   const redirectToLogin = () => {
@@ -67,7 +67,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="page">
+    <div>
       <div className="card">
         <h2>Sign Up</h2>
 

@@ -4,7 +4,7 @@ import axios from "axios";
 import { TopList24H } from "../services/api";
 import CryptoContext, { CryptoState } from "../CryptoContext";
 import AliceCarousel from "react-alice-carousel";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { CarouselItem } from "react-bootstrap";
 import "../styles/crypto.css";
@@ -14,6 +14,7 @@ import { IconButton } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import arrowleft from '../Assets/Arrow Left.svg';
 import arrowright from '../Assets/Arrow Right (1).svg'
+import {useNavigate } from "react-router-dom";
 
 interface CoinData {
   CoinInfo: {
@@ -33,6 +34,8 @@ interface CoinData {
 }
 
 const Carousel: React.FC = () => {
+
+
   const [topList, setTopList] = useState<CoinData[]>([]);
   const { currency } = CryptoState();
   const carouselRef = useRef<AliceCarousel | null>(null);
@@ -52,6 +55,12 @@ const Carousel: React.FC = () => {
     fetchTop24HVol();
   }, [currency]);
 
+  const navigate = useNavigate();
+
+  const handleCarouselItemClick = (coin: CoinData) => {
+    navigate(`/coin-details/${coin.CoinInfo.Name}`, { state: { coin } });
+  };
+
   const items = topList.map((coin: CoinData) => {
     const id = coin.CoinInfo.Id;
     const imageUrl = coin.CoinInfo.ImageUrl;
@@ -60,10 +69,12 @@ const Carousel: React.FC = () => {
     const changepct = coin.DISPLAY.USD.CHANGEPCT24HOUR;
     const highhour = coin.DISPLAY.USD.HIGH24HOUR;
     const lowhour = coin.DISPLAY.USD.LOW24HOUR;
-
+    const name=coin.CoinInfo.Name;
     return (
       
-      <div className="carouselItem" key={id}>
+      <div className="carouselItem" key={id}  
+      onClick={() => handleCarouselItemClick(coin)}>
+     
         <div className="cardcrypto">
           <div className="containercrypto">
             <span className="sun">
@@ -88,10 +99,13 @@ const Carousel: React.FC = () => {
               <img src={negative} alt="Negative" className="image-style" />
             )}
             <span className={changepct > 0 ? "positive" : "negative"}>
+            {changepct > 0 ? '+' : '-'}
+
               {changepct}%
             </span>
           </div>
         </div>
+        
       </div>
     );
   });
