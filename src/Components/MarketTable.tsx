@@ -3,6 +3,7 @@ import { TextField, InputAdornment, Pagination } from '@mui/material';
 import searchicon from '../Assets/searchicon.svg';
 import '../styles/crypto.css';
 import searchnotfound from '../Assets/errorsearchresults.svg';
+import { useNavigate } from 'react-router-dom';
 
 const tableStyle = {
   borderSpacing: '10px',
@@ -56,6 +57,7 @@ const MarketTable: React.FC = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
+  const navigate=useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -99,6 +101,10 @@ const MarketTable: React.FC = () => {
     coin.CoinInfo.FullName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleCarouselItemClick = (coin: CoinData) => {
+    navigate(`/coin-details/${coin.CoinInfo.Name}`, { state: { coin } });
+    console.log('helloooooo')
+  };
   const sortedData = [...filteredData].sort((a, b) => {
     const priceA = parseFloat(a.DISPLAY?.USD?.PRICE) || 0;
     const priceB = parseFloat(b.DISPLAY?.USD?.PRICE) || 0;
@@ -158,11 +164,11 @@ const MarketTable: React.FC = () => {
               <th className="thStyle">Volume (24h)</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {paginatedData.map((coin) => (
-              <tr key={coin.CoinInfo.Id}>
+              <tr key={coin.CoinInfo.Id} >
                 <td className="tdStyle">
-                  <div className="tableimage-fullname">
+                  <div className="tableimage-fullname"  onClick={() => handleCarouselItemClick(coin)} >
                     <img
                       src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
                       height="60"
