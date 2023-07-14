@@ -1,6 +1,7 @@
 import AuthStore from '../stores/AuthStore';
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-Jh2ygm_OG5J_hUxHJgCmdAUszgvFEPw",
@@ -15,6 +16,7 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig);
 export const auth = getAuth(firebase);
+export const firestore = getFirestore(firebase);
 
 class RootStore {
   authStore: typeof AuthStore; // Updated type

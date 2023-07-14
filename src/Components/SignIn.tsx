@@ -7,8 +7,6 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/crypto.css';
-import { auth } from '../services/firebaseconfig';
-import AuthDetails from '../Components/AuthDetails';
 import { useNavigate } from 'react-router-dom';
 import AuthStore from '../stores/AuthStore';
 import rootStore from '../stores/RootStore';
@@ -17,7 +15,9 @@ interface UserInput {
   email: string;
   password: string;
 }
-
+interface SignInProps {
+  onSignInSuccess: () => void;
+}
 const SignIn: React.FC = observer(() => {
   const {
     register,
@@ -53,20 +53,24 @@ const SignIn: React.FC = observer(() => {
 
   const onSubmit = async (data: UserInput) => {
     const { email, password } = data;
-
+  
     try {
       const auth = getAuth();
-
+  
       // Enable persistence
       await setPersistence(auth, browserLocalPersistence);
-
+  
       // Sign in the user with email and password
-      await signInWithEmailAndPassword(auth, email, password);
-
-      rootStore.authStore.setAuthUser({ username: email });
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+  
+      rootStore.authStore.setAuthUser({ uid: user.uid, username: email });
+     
+      // Call the handleSignInSuccess action in the AuthStore
+      rootStore.authStore.closeModal();
 
       console.log('User signed in successfully!');
-
+      console.log('UID:', user.uid,email); // Log the UID
+     
       // Display success toast message
       toast.success('Logged in successfully!', {
         position: toast.POSITION.TOP_CENTER,
@@ -79,7 +83,7 @@ const SignIn: React.FC = observer(() => {
       }
     }
   };
-
+  
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };

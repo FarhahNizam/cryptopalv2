@@ -5,6 +5,7 @@ import SignIn from '../Components/SignIn';
 import SignUp from '../Components/SignUp';
 import '../styles/crypto.css';
 import rootStore from '../stores/RootStore';
+import { getAuth,signOut } from 'firebase/auth';
 
 const Consolepage: React.FC = observer(() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,35 +21,56 @@ const Consolepage: React.FC = observer(() => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    rootStore.authStore.closeModal();
   };
 
   const handleSignInSuccess = () => {
-    closeModal();
+    rootStore.authStore.openModal();
   };
+
+  
+
 
   const renderAuthButton = () => {
     if (rootStore.authStore.isSignedIn) {
+
       // User is signed in, show sign-out button
       return (
-        <button onClick={handleSignOut}>Sign Out</button>
+        
+        <div>
+          <span>{rootStore.authStore.username}</span> 
+          <button onClick={handleSignOut}>Sign Out</button>
+
+        </div>
+      );
+    } else if (!rootStore.authStore.isSignedIn && !authStore.isModalOpen) {
+      // User is not signed in and modal is not open, show sign-in button
+      return (
+        <button onClick={handleSignInSuccess}>Sign In</button>
       );
     } else {
-      // User is not signed in, show sign-in button
-      return (
-        <button onClick={openModal}>Sign In</button>
-      );
+      // User is not signed in, do not render any button
+      return null;
     }
   };
+  
 
   const handleSignOut = () => {
-    rootStore.authStore.clearAuthUser();
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        rootStore.authStore.clearAuthUser();
+        console.log('User signed out successfully!');
+      })
+      .catch((error:any) => {
+        console.log('Error signing out:', error.message);
+      });
   };
 
   return (
     <div>
       {renderAuthButton()}
-      {isModalOpen && (
+      {authStore.isModalOpen && (
         <div className="overlay">
           <div className="modal">
             <div className="modal-content">

@@ -8,6 +8,8 @@ const Watchlist=() => {
         <>
        <div className="">
         <NavBar />
+
+        
        </div>
         
              

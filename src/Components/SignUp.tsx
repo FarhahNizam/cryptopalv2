@@ -4,7 +4,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import "../styles/crypto.css";
-import { auth } from "../services/firebaseconfig";
+import { auth } from "../stores/RootStore";
 
 interface UserInput {
   email: string;

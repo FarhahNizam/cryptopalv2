@@ -17,6 +17,7 @@ import { Provider, observer } from 'mobx-react';
 import AuthStore from './stores/AuthStore';
 import authStore from './stores/AuthStore';
 import Watchlist from '../src/Pages/WatchList';
+import News from '../src/Pages/News';
 
 const App: React.FC =() => {
 
@@ -37,6 +38,8 @@ const App: React.FC =() => {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/help" element={<Help />} />
           <Route path="/watchlist" element={<Watchlist />} />
+          <Route path="/news" element={<News />} />
+
           {/* <Route path="/features" element={<Features />} /> */}
              {/* <Route path="/coin-details/name" element={<CoinDetailsPage />} />  */}
 
