@@ -459,6 +459,34 @@ font-weight: 500;
   background-position: center;
 }
 
+.AboutPage{
+  width: 80vw;
+  height: 100vh;
+  background-image: url("../Assets/About\ Illustration.svg");
+  background-size: 45rem;
+  background-repeat: no-repeat;
+  background-position: right;
+  margin: auto;
+  line-height: 3.5rem;
+}
+
+.about-page{
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100px;
+}
+
+/* .team-section {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../Assets/Team-bg.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+} */
+
+
 .FeaturePageBackground{
   width: 100vw;
   height: 100vh;
