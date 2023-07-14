@@ -13,28 +13,32 @@ import Features from "../src/Pages/Features";
 import CloseButton from "react-bootstrap";
 import CoinDetailsPage from "./Components/CoinDetails";
 import Market from "../src/Pages/Market";
-
+import { Provider, observer } from "mobx-react";
+import AuthStore from "./stores/AuthStore";
+import authStore from "./stores/AuthStore";
 const App: React.FC = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Consolepage" element={<Consolepage />} />
-      </Routes>
+      <Provider authStore={authStore}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Consolepage" element={<Consolepage />} />
+        </Routes>
 
-      {/* <NavBar />  */}
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/market" element={<Market />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/help" element={<Help />} />
-        {/* <Route path="/features" element={<Features />} /> */}
-        {/* <Route path="/coin-details/name" element={<CoinDetailsPage />} />  */}
+        {/* <NavBar />  */}
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/market" element={<Market />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/help" element={<Help />} />
+          {/* <Route path="/features" element={<Features />} /> */}
+          {/* <Route path="/coin-details/name" element={<CoinDetailsPage />} />  */}
 
-        <Route path="/coin-details/:coinName" element={<CoinDetailsPage />} />
-      </Routes>
+          <Route path="/coin-details/:coinName" element={<CoinDetailsPage />} />
+        </Routes>
+      </Provider>
     </>
   );
 };
 
-export default App;
+export default observer(App);

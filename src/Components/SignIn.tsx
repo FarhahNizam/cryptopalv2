@@ -51,8 +51,6 @@ const SignIn: React.FC = () => {
   return (
     <div>
       <div className="card">
-        <h2>Sign In</h2>
-
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <input type="email" placeholder="Email" {...register("email")} />
 
@@ -83,7 +81,9 @@ const SignIn: React.FC = () => {
           {errors.password && (
             <p className="error-message">{errors.password.message}</p>
           )}
-          <button type="submit">Sign In</button>
+          <div className="submit-btn">
+            <button type="submit">Sign In</button>
+          </div>
         </form>
       </div>
       <div>

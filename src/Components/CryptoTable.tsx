@@ -3,6 +3,9 @@ import { TextField, IconButton } from '@mui/material';
 import search from '../Assets/search.svg';
 import "../styles/crypto.css"
 import searchnotfound from '../Assets/errorsearchresults.svg';
+import { fetchCryptoData } from '../services/api';
+import { useNavigate } from 'react-router-dom';
+
 const tableStyle = {
   borderSpacing: '10px',
   width: '100%',
@@ -38,6 +41,8 @@ const CryptoTable: React.FC = () => {
   const [data, setData] = useState<CoinData[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -61,10 +66,13 @@ const CryptoTable: React.FC = () => {
   const filteredData = data.filter((coin) =>
     coin.CoinInfo.FullName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const handleCarouselItemClick = (coin: CoinData) => {
+    navigate(`/coin-details/${coin.CoinInfo.Name}`, { state: { coin } });
+  };
 
   return (
     <div className="containerStyle">
-      <div className="cardStyle">
+      <div className="card-style-cryptotable">
         <TextField
           sx={{
             width: '85%'
@@ -85,19 +93,21 @@ const CryptoTable: React.FC = () => {
               {filteredData.map((coin) => (
                 <tr key={coin.CoinInfo.Id}>
                   <td className="tdStyle">
-                    <img
-                      src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
-                      height="50"
-                      style={{ marginBottom: 10 }}
-                    />
-                    {coin.CoinInfo.FullName}
+                    <div className='tableimage-fullname'  onClick={() => handleCarouselItemClick(coin)} > 
+                      <img
+                        src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
+                        height="60"
+                        style={{ marginBottom: 10 }}
+                      />
+                      <span className='coindetails-symbol'>{coin.CoinInfo.FullName}</span>
+                      <span className='markettable-symbol'>{coin.CoinInfo.Name}</span>
+                    </div>
                   </td>
                   <td className="tdStyle">{coin.DISPLAY.USD.PRICE}</td>
-                 
-                  <td className={coin.DISPLAY.USD.CHANGEPCT24HOUR>0 ? "positive":"negative"}>
-                  { coin.DISPLAY.USD.CHANGEPCT24HOUR> 0 ? '+' : '-'}
-
-                    {coin.DISPLAY.USD.CHANGEPCT24HOUR}%</td>
+                  <td className={coin.DISPLAY.USD.CHANGEPCT24HOUR > 0 ? "positive" : "negative"}>
+                    {coin.DISPLAY.USD.CHANGEPCT24HOUR > 0 ? '+' : '-'}
+                    {coin.DISPLAY.USD.CHANGEPCT24HOUR}%
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -105,9 +115,9 @@ const CryptoTable: React.FC = () => {
         ) : (
           <div style={{ textAlign: 'center' }}>
             <img
-              src={searchnotfound} // Replace with the URL of the random image
+              src={searchnotfound}
               alt="No results found"
-              style={{ height: '20%', width:'30%', marginBottom: '10px' }}
+              style={{ height: '20%', width: '30%', marginBottom: '10px' }}
             />
             <span className='error-title'>No results found.</span>
           </div>

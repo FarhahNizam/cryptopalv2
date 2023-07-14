@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -34,9 +34,7 @@ const SignUp: React.FC = () => {
       console.log("Error creating user:", error);
     }
   };
-
   const validatePassword = (value: string) => {
-    const confirmPassword = getValues("confirmPassword");
     if (value.length < 8) {
       return "Password should have a minimum of 8 characters";
     }
@@ -46,22 +44,31 @@ const SignUp: React.FC = () => {
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
       return "Password should include symbols";
     }
-    if (value !== confirmPassword) {
+    if (!/[a-z]/.test(value)) {
+      return "Password should include lowercase letters";
+    }
+    if (!/\d/.test(value)) {
+      return "Password should include numbers";
+    }
+
+    return true;
+  };
+
+  const validateConfirmPassword = (value: string) => {
+    const password = getValues("password");
+    if (value !== password) {
       return "Passwords do not match";
     }
-    
     return true;
   };
 
   const showSuccessAlert = () => {
-    return (
-      <Alert severity="success">User successfully registered!</Alert>
-    );
+    return <Alert severity="success">User successfully registered!</Alert>;
     // Code to display success alert
   };
 
   const redirectToLogin = () => {
-    history("/signin"); 
+    history("/signin");
     history("/home");
     // Replace "/login" with the actual login route
   };
@@ -69,8 +76,6 @@ const SignUp: React.FC = () => {
   return (
     <div>
       <div className="card">
-        <h2>Sign Up</h2>
-
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <input type="email" placeholder="Email" {...register("email")} />
 
@@ -86,16 +91,20 @@ const SignUp: React.FC = () => {
             type="password"
             placeholder="Confirm Password"
             {...register("confirmPassword", {
-              validate: validatePassword,
+              validate: validateConfirmPassword,
             })}
           />
+          {errors.password && (
+            <p className="error-message">{errors.password.message}</p>
+          )}
           {errors.confirmPassword && (
             <p className="error-message">{errors.confirmPassword.message}</p>
           )}
-
-          
- 
-          <button type="submit">Sign Up</button>
+          <div className="button-form">
+            <button className="form-button" type="submit">
+              Create account
+            </button>
+          </div>
         </form>
       </div>
     </div>

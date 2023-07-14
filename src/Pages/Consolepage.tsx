@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
-import SignIn from '../Components/SignIn';
-import SignUp from '../Components/SignUp';
-import '../styles/crypto.css'; // Import the CSS file for Consolepage component
+import React, { useState } from "react";
+import { observer } from "mobx-react";
+import authStore from "../stores/AuthStore";
+import SignIn from "../Components/SignIn";
+import SignUp from "../Components/SignUp";
+import "../styles/crypto.css";
+import rootStore from "../stores/RootStore";
+import { Modal } from "@mui/material";
 
-const Consolepage = () => {
+const Consolepage: React.FC = observer(() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTab, setSelectedTab] = useState<'SignIn' | 'SignUp'>('SignIn');
+  const [selectedTab, setSelectedTab] = useState<"SignIn" | "SignUp">("SignIn");
 
-  const handleTabChange = (event: React.MouseEvent<HTMLDivElement>, newTab: 'SignIn' | 'SignUp') => {
+  const handleTabChange = (
+    event: React.MouseEvent<HTMLDivElement>,
+    newTab: "SignIn" | "SignUp"
+  ) => {
     setSelectedTab(newTab);
     openModal();
   };
@@ -20,39 +27,52 @@ const Consolepage = () => {
     setIsModalOpen(false);
   };
 
+  const handleSignInSuccess = () => {
+    closeModal();
+  };
+
+  const renderAuthButton = () => {
+    if (rootStore.authStore.isSignedIn) {
+      // User is signed in, show sign-out button
+      return <button onClick={handleSignOut}>Sign Out</button>;
+    } else {
+      // User is not signed in, show sign-in button
+      return <button onClick={openModal}>Sign In</button>;
+    }
+  };
+
+  const handleSignOut = () => {
+    rootStore.authStore.clearAuthUser();
+  };
+
   return (
     <div>
-      <button onClick={openModal}>Log in</button>
-      
+      {renderAuthButton()}
       {isModalOpen && (
-        <div className="overlay"> {/* Add overlay class */}
+        <Modal open={isModalOpen} onClose={closeModal} className="overlay">
           <div className="modal">
             <div className="modal-content">
               <div className="tab-container">
                 <div
-                  className={`tab ${selectedTab === 'SignIn' ? 'active' : ''}`}
-                  onClick={(event) => handleTabChange(event, 'SignIn')}
+                  className={`tab ${selectedTab === "SignIn" ? "active" : ""}`}
+                  onClick={(event) => handleTabChange(event, "SignIn")}
                 >
                   Login
                 </div>
                 <div
-                  className={`tab ${selectedTab === 'SignUp' ? 'active' : ''}`}
-                  onClick={(event) => handleTabChange(event, 'SignUp')}
+                  className={`tab ${selectedTab === "SignUp" ? "active" : ""}`}
+                  onClick={(event) => handleTabChange(event, "SignUp")}
                 >
                   Signup
                 </div>
               </div>
-              {selectedTab === 'SignIn' ? <SignIn /> : <SignUp />}
-              <button onClick={closeModal}>Close</button>
+              {selectedTab === "SignIn" ? <SignIn /> : <SignUp />}
             </div>
           </div>
-        </div>
+        </Modal>
       )}
-     
-
     </div>
   );
-};
+});
 
 export default Consolepage;
-
