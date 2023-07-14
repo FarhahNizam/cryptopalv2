@@ -4,14 +4,19 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC-Jh2ygm_OG5J_hUxHJgCmdAUszgvFEPw",
-  authDomain: "cryptoproject-f1788.firebaseapp.com",
-  projectId: "cryptoproject-f1788",
-  storageBucket: "cryptoproject-f1788.appspot.com",
-  messagingSenderId: "1002063783531",
-  appId: "1:1002063783531:web:8539175ae00c1edb9c732e",
-  measurementId: "G-FKPGD74S9S"
-  // Your Firebase configuration
+  apiKey: "AIzaSyA-aAZD0cZ2fZ6aNqr8KAQifPa_ybeFO5c",
+
+  authDomain: "drcapp-22f93.firebaseapp.com",
+
+  projectId: "drcapp-22f93",
+
+  storageBucket: "drcapp-22f93.appspot.com",
+
+  messagingSenderId: "885356589934",
+
+  appId: "1:885356589934:web:9b52cf79b2fd80cc53477f",
+
+  measurementId: "G-GVJ8YM8KSJ"
 };
 
 const firebase = initializeApp(firebaseConfig);
@@ -19,10 +24,10 @@ export const auth = getAuth(firebase);
 export const firestore = getFirestore(firebase);
 
 class RootStore {
-  authStore: typeof AuthStore; // Updated type
+  authStore: typeof AuthStore;
 
   constructor() {
-    this.authStore = AuthStore; // Assign the class reference
+    this.authStore = AuthStore; // Assign the AuthStore class directly
   }
 }
 
