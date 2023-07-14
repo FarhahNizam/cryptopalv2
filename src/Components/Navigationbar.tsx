@@ -47,10 +47,10 @@ const NavBar: React.FC = observer(() => {
               <NavLink to="/market">Market</NavLink>
             </li>
             <li>
-              <NavLink to="/aboutus">Watchlist</NavLink>
+              <NavLink to="/watchlist">Watchlist</NavLink>
             </li>
             <li>
-              <NavLink to="/help">About us</NavLink>
+              <NavLink to="/aboutus">About us</NavLink>
             </li>
             <li>
               <NavLink to="/help">Help</NavLink>
