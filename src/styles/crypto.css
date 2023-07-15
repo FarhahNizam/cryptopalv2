@@ -459,6 +459,8 @@ font-weight: 500;
   background-position: center;
 }
 
+
+/* ABOUT PAGE */
 .AboutPage{
   width: 80vw;
   height: 100vh;
@@ -477,29 +479,31 @@ font-weight: 500;
   padding-bottom: 100px;
 }
 
+.ring-background {
+  position: absolute;
+}
+
+.team-section-header {
+  position: absolute;
+  font-size: 70px;
+  padding-top: 150px;
+  color: white;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .team-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 100%;
-  height: 100vh;
-  background-image: url("../Assets/Team-bg.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center; */
   border-top-right-radius: 50%;
   border-top-left-radius: 70%;
-  /* border-radius: 2552.254px; */
   background-color: #0D0D2B;
   height: 130vh;
-
-  /* border-top-right-radius: 51em 12em;
-  border-top-left-radius: 69em 29em; */
-
   border-top-right-radius: 51em 12em;
     border-top-left-radius: 69em 48em;
 }
-
+/* ABOUT PAGE END */
 
 
 .grid-container {
@@ -509,11 +513,11 @@ font-weight: 500;
 }
 
 .grid-item {
-padding: 26px;
+padding: 20px;
 }
 
 .grid-item:nth-child(odd) {
-  padding-top: 120px;
+  padding-top: 108px;
 }
 
 
@@ -541,7 +545,6 @@ padding: 26px;
 .team-card-front, .team-card-back {
   position: absolute;
   width: 100%;
-  /* height: 100%; */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 10%;
@@ -554,13 +557,7 @@ padding: 26px;
   padding-top: 3rem;
 }
 
-/* .team-card-front img {
-  width: 100%; height: auto;
-} */
-
 .team-card-front-image {
-  /* border-radius: 50%;
-  width: 180px; */
     width: 150px;
     height: 150px;
     border-radius: 50%;

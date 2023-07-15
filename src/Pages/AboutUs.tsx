@@ -5,6 +5,7 @@ import FarhahPic from "../Assets/FarhahVG.png";
 import BegaPic from "../Assets/BegaVG.png";
 import PremPic from "../Assets/PremVG.png";
 import IkmalPic from "../Assets/IkmalVG.png";
+import Pink_circle from "../Assets/Pink-circle.svg";
 import linkedinLogo from "../Assets/linkedin.png";
 
 const team = [
@@ -64,7 +65,15 @@ const AboutUs: React.FC = () => {
         </div>
       </div>
       <div style={{ backgroundColor: "#F9FAFD" }}>
+        {/* <h1 style={{ textAlign: "center" }}>Meet our team</h1> */}
+        {/* <div> */}
+          <h1 className="team-section-header">Meet the team !</h1>
         <div className="team-section">
+          <img
+            className="ring-background"
+            src={Pink_circle}
+            alt="BigCo Inc. logo"
+          />
           <div style={{ color: "white", fontSize: 50 }}>
             <div className="grid-container">
               {team.map((item) => (
@@ -100,7 +109,8 @@ const AboutUs: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      {/* </div> */}
       {/* <div style={{ backgroundColor: "#F9FAFD" }}>
         <div className="team-section">
           <div style={{ color: "white", fontSize: 50 }}>
