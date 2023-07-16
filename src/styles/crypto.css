@@ -92,7 +92,7 @@
   }
 
   .footer-container{
-    width: 100%;
+    /* width: 100%; */
    margin: 20px;
     display: flex;
     justify-content: space-between;
@@ -428,7 +428,7 @@ font-weight: 500;
   font-family: roboto;
   font-weight: 800;
   color:#BB0163;
-
+  padding-bottom: 20px;
 }
 
 .landing-page-paragraph{
@@ -459,7 +459,13 @@ font-weight: 500;
   background-position: center;
 }
 
-.AboutPage{
+
+/* ABOUT PAGE */
+.about-page-container {
+  background-color: #F9FAFD;
+}
+
+.about-ilustration{
   width: 80vw;
   height: 100vh;
   background-image: url("../Assets/About\ Illustration.svg");
@@ -470,21 +476,149 @@ font-weight: 500;
   line-height: 3.5rem;
 }
 
-.about-page{
+.about-copywriting{
   padding-top: 200px;
   display: flex;
   flex-direction: column;
   padding-bottom: 100px;
+  width: 47%;
 }
 
-/* .team-section {
+.ring-background {
+  position: absolute;
+}
+
+.team-section-header {
+  position: absolute;
+  font-size: 70px;
+  padding-top: 150px;
+  color: white;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.team-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 70%;
+  background-color: #0D0D2B;
+  height: 130vh;
+  border-top-right-radius: 51em 12em;
+    border-top-left-radius: 69em 48em;
+}
+
+.team-profile {
+  color: white;
+  font-size: 50 ;
+}
+
+.linkedinLogo {
+  padding: 1.3rem;
+}
+/* ABOUT PAGE END */
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+  grid-template-rows: 1fr 1fr; /* Two rows with equal height */
+}
+
+.grid-item {
+padding: 20px;
+}
+
+.grid-item:nth-child(odd) {
+  padding-top: 108px;
+}
+
+
+.team-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.team-card-inner {
+  position: relative;
   width: 100%;
-  height: 100vh;
-  background-image: url("../Assets/Team-bg.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-} */
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.team-card:hover .team-card-inner {
+  transform: rotateY(180deg);
+}
+
+.team-card-front, .team-card-back {
+  position: absolute;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 10%;
+}
+
+.team-card-front {
+  background-color: #fff;
+  color: black;
+  height: 36vh;
+  padding-top: 3rem;
+}
+
+.team-card-front-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.team-card-back {
+  background-color: #fff;
+  color: black;
+  transform: rotateY(180deg);
+  height: 36vh;
+  padding-top: 3rem;
+}
+
+.team-member{
+  margin: 0;
+  color: #000;
+  font-size: 40px;
+  text-align: center;
+  line-height: 70px;
+}
+
+.team-position{
+  margin: 0;
+  color: #000;
+  font-size: 20px;
+  text-align: center;
+}
+
+.team-info {
+  margin: 0;
+  color: #000;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.team-info p {
+  margin: 0;
+}
+
+
+
+/* About page */
 
 
 .FeaturePageBackground{
