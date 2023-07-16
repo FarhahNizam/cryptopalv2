@@ -92,7 +92,7 @@
   }
 
   .footer-container{
-    width: 100%;
+    /* width: 100%; */
    margin: 20px;
     display: flex;
     justify-content: space-between;
@@ -428,7 +428,7 @@ font-weight: 500;
   font-family: roboto;
   font-weight: 800;
   color:#BB0163;
-
+  padding-bottom: 20px;
 }
 
 .landing-page-paragraph{
@@ -461,7 +461,11 @@ font-weight: 500;
 
 
 /* ABOUT PAGE */
-.AboutPage{
+.about-page-container {
+  background-color: #F9FAFD;
+}
+
+.about-ilustration{
   width: 80vw;
   height: 100vh;
   background-image: url("../Assets/About\ Illustration.svg");
@@ -472,11 +476,12 @@ font-weight: 500;
   line-height: 3.5rem;
 }
 
-.about-page{
+.about-copywriting{
   padding-top: 200px;
   display: flex;
   flex-direction: column;
   padding-bottom: 100px;
+  width: 47%;
 }
 
 .ring-background {
@@ -502,6 +507,15 @@ font-weight: 500;
   height: 130vh;
   border-top-right-radius: 51em 12em;
     border-top-left-radius: 69em 48em;
+}
+
+.team-profile {
+  color: white;
+  font-size: 50 ;
+}
+
+.linkedinLogo {
+  padding: 1.3rem;
 }
 /* ABOUT PAGE END */
 
