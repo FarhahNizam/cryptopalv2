@@ -1,35 +1,47 @@
 import { action, computed, makeObservable, observable } from 'mobx';
 
+export interface CoinDetails {
+  coinId: string;
+  name: string;
+  fullName: string;
+  price: string;
+  imageurl:string;
+  changepct:number;
+  // Add other properties as needed
+}
+
 class FavoriteStore {
-  favorites: any[] = [];
+  favorites: CoinDetails[] = [];
 
   constructor() {
     makeObservable(this, {
       favorites: observable,
       addToFavorites: action,
       removeFromFavorites: action,
-      isFavorite: observable,
+      isFavorite: computed,
     });
     this.loadFavorites();
   }
 
-  addToFavorites(coinId: string) {
-    if (!this.isFavorite(coinId)) {
-      this.favorites.push(coinId);
+  addToFavorites(coinDetails: CoinDetails) {
+    if (!this.isFavorite(coinDetails.coinId)) {
+      this.favorites.push(coinDetails);
       this.saveFavorites();
     }
   }
 
   removeFromFavorites(coinId: string) {
-    const index = this.favorites.indexOf(coinId);
+    const index = this.favorites.findIndex((coin) => coin.coinId === coinId);
     if (index > -1) {
       this.favorites.splice(index, 1);
       this.saveFavorites();
     }
   }
 
-  isFavorite(coinId: string) {
-    return this.favorites.includes(coinId);
+  get isFavorite() {
+    return (coinId: string) => {
+      return this.favorites.some((coin) => coin.coinId === coinId);
+    };
   }
 
   loadFavorites() {

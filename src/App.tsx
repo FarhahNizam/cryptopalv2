@@ -18,6 +18,7 @@ import AuthStore from './stores/AuthStore';
 import authStore from './stores/AuthStore';
 import Watchlist from '../src/Pages/WatchList';
 import News from '../src/Pages/News';
+import { ToastContainer } from 'react-toastify';
 
 const App: React.FC =() => {
 
@@ -26,6 +27,7 @@ const App: React.FC =() => {
     <>
     
     <Provider authStore={authStore}> 
+    <ToastContainer />
     <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Consolepage" element={<Consolepage />} />

@@ -11,6 +11,7 @@ import OurFeatures from "../Components/OurFeatures";
 import CryptoTable from "../Components/CryptoTable";
 import ExploreCryptocurrency from "../Components/ExploreCryptocurrency";
 import Footer from "../Components/Footer";
+import Cryptoverse from "../Components/Cryptoverse";
 const Home=() => {
     return(
         <div>
@@ -21,9 +22,8 @@ const Home=() => {
 <Carousel />
 <OurFeatures />
 <ExploreCryptocurrency />
+<Cryptoverse />
 <Footer />
-
-  <AuthDetails />
       
          </div>
         </div>

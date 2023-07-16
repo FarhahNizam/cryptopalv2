@@ -29,30 +29,48 @@ interface CoinData {
 const CoinDetailsPage: React.FC = observer(() => {
   const location = useLocation();
   const { coin } = location.state;
+  const coinDetails = {
+    coinId: coin.CoinInfo.Id,
+    name: coin.CoinInfo.Name,
+    fullName: coin.CoinInfo.FullName,
+    price: coin.DISPLAY.USD.PRICE,
+    changepct:coin.DISPLAY.USD.CHANGEPCT24HOUR,
+    // Add other properties as needed
+  };
 
   const handleToggleFavorite = async (e:any) => {
     e.preventDefault();
     try {
       const currentUser = auth.currentUser; // Get the current authenticated user using Firebase auth
-      
+        
       if (currentUser) {
         const userId = currentUser.uid; // Get the user's UID
         const coinId = coin.CoinInfo.Id;
         const favoritesRef = collection(firestore, "favorites", userId, coinId);
-
+  
         // Check if the coin is already in the user's favorites
         const favoriteDoc = doc(favoritesRef, coinId);
         const favoriteSnapshot = await getDoc(favoriteDoc);
         const isFavorite = favoriteSnapshot.exists();
-
+  
         if (isFavorite) {
           // Remove the coin from favorites
           await deleteDoc(favoriteDoc);
           authStore.favoriteStore.removeFromFavorites(coinId);
         } else {
+          const coinDetails = {
+            coinId: coin.CoinInfo.Id,
+            name: coin.CoinInfo.Name,
+            fullName: coin.CoinInfo.FullName,
+            price: coin.DISPLAY.USD.PRICE,
+            imageurl:coin.CoinInfo.ImageUrl,
+            changepct:coin.DISPLAY.USD.CHANGEPCT24HOUR,
+
+            // Add other properties as needed
+          };
           // Add the coin to favorites
-          await setDoc(favoriteDoc, { coinId });
-          authStore.favoriteStore.addToFavorites(coinId);
+          await setDoc(favoriteDoc, coinDetails);
+          authStore.favoriteStore.addToFavorites(coinDetails);
         }
       } else {
         // Handle the case when the user is not signed in
@@ -64,11 +82,8 @@ const CoinDetailsPage: React.FC = observer(() => {
       // You can show an error message to the user or perform other actions
     }
   };
+  
 
-  
-  
-  
-  
   return (
     <div>
       <Navigationbar />

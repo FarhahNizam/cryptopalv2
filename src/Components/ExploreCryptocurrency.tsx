@@ -6,13 +6,14 @@ import CryptoTable from "../Components/CryptoTable";
 const ExploreCryptocurrency:React.FC=() => {
     return(
         <div> 
-        <div className="CryptotablePageBackground">
-            <div className="explorecrypto-page">
-                <span className="explorecrypto-page-title">Explore cryptocurrency here !</span>
-                <span className="explorecrypto-page-paragraph">Let’s check your hash rate to see how much you will earn today, Exercitation veniam consequat sunt nostrud amet.</span>
+        <div className="StayInformedPageBackground">
+            <div className="landing-page">
+            <span className="staying-page-title">Stay informed with the latest news</span>
+<span className="landing-page-paragraph">Stay ahead of the game and make informed decision!</span>
+<button className="button-viewmore">View more</button>
             </div>
         <div>
-        <CryptoTable />
+        {/* <CryptoTable /> */}
 
         </div>
       

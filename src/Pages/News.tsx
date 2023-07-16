@@ -102,8 +102,9 @@ const News: React.FC = () => {
 
   return (
     <>
+     <NavBar />
       <div className="NewsPage">
-        <NavBar />
+       
         <div className="coindetails-page">
           <span className="coindetails-page-title">News</span>
         </div>

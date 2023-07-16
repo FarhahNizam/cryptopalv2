@@ -83,12 +83,13 @@
 
   .container {
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 15px;
+    margin: 0 20px;
+    padding: 0 0px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     height: 100%;
+    flex:1;
   }
 
   .footer-container{
@@ -102,11 +103,10 @@
   
  .footerbar{
   position: relative;
-  margin-top: 40%;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 200px;
+  height: 100px;
   background-color: white;
   z-index: 1;
   opacity: 1; 
@@ -128,18 +128,27 @@
 
   .nav-elements{
     display: flex;
-    flex: 2;
+    flex: 1;
+    margin-left: 400px;
+    margin-top: 20px;
+    
   }
   
-
+.nav-signin{
+  display: flex;
+  flex: 1.0;
+  margin-left: 300px;
+ 
+}
   .nav-elements ul {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
   }
   
-  .nav-elements ul li:not(:last-child) {
+  .nav-elements ul li{
     margin-right: 60px;
+    margin-top: 20px;
   }
   
   .nav-elements ul a {
@@ -393,10 +402,12 @@ font-weight: 500;
 }
 
 .logo{
-  width:150px;
-  height:100px;
+  width:140px;
+  height:80px;
   display: flex;
   flex: 1;
+  margin-right: 200px;
+  
 }
 
 .logo-footer{
@@ -435,8 +446,18 @@ font-weight: 500;
   font-size: 35px;
   font-family: roboto;
   color:#7A7A7A;
+  margin: 10px;
 
 }
+
+.staying-page-title{
+  font-size: 65px;
+  font-family: roboto;
+  font-weight: 800;
+  color:#BB0163;
+
+}
+
 .content-title{
   font-size: 50px;
   font-family: roboto;
@@ -630,7 +651,7 @@ padding: 20px;
 }
 
 .feature-page {
-  padding-top: 200px;
+  padding-top: 290px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -639,7 +660,7 @@ padding: 20px;
 }
 
 .feature-page > * {
-  margin-bottom: 10px; /* Adjust this value to set the desired spacing */
+  margin-bottom: 30px; /* Adjust this value to set the desired spacing */
 }
 
 .feature-page-paragraph{
@@ -647,6 +668,7 @@ padding: 20px;
   font-family: roboto;
   color:#fff;
   font-weight: 800;
+  margin-top: 2%;
 
 }
 
@@ -668,10 +690,10 @@ padding: 20px;
   border-radius: 20px;
 }
 
-.CryptotablePageBackground{
+.StayInformedPageBackground{
   width: 100vw;
   height: 100vh;
-  background-image: url("../Assets/tradesecurely.svg");
+  background-image: url("../Assets/page3stayinformed.svg");
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -730,7 +752,7 @@ text-align:left;
  align-items: center;
   display: flex;
   flex-direction: column;
-  padding-bottom: 100px;
+  padding-bottom: 300px;
 }
 
 .explorecrypto-page-title{
@@ -1215,4 +1237,44 @@ flex: 1;
   transform: scale(1.01);
   box-shadow: 5px 5px 10px 10px #FF78BF;
 border-radius: 32px;
+}
+
+.button-viewmore{
+  border: none;
+  border-radius: 32px;
+  background-color: #FF78BF;
+  color: #fff;
+  cursor: pointer;
+  width: 265px;
+  height: 65px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.CryptoversebackgroudPage{
+  background-color: #0D0D2B;
+  width: 100vw;
+  height: 50vh;
+
+}
+.cryptoverse-paragraph{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cryptoverse-title{
+  color: white;
+  font-size: 50px;
+  font-weight: 600;
+  font-family: roboto;
+  margin-top: 10%
+}
+
+.cryptoverse-content{
+  color: #E0E0E0;
+  font-size: 30px;
+  font-family: roboto;
+  margin-top: 4%;
 }
