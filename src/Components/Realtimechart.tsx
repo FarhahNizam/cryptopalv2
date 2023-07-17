@@ -8,12 +8,12 @@ import { Line } from 'react-chartjs-2';
 
 Chart.register(LineController, CategoryScale, LinearScale, PointElement);
 
-const RealTimeChart = () => {
+const RealTimeChart = ({ coin }: { coin: string }) =>  {
   const data = {
     labels: chartStore.chartData.map((data) => data.time),
     datasets: [
       {
-        label: 'Bitcoin Price',
+        label: `${coin} Price`,
         data: chartStore.chartData.map((data) => ({
           x: data.time,
           y: data.price,
@@ -76,8 +76,8 @@ const RealTimeChart = () => {
 
   return (
     <div>
-      <WebSocketConnection  name="BTC" />
-      <Line data={data} options={options} style={{ height: '500px', width: '80%' }} />
+      <WebSocketConnection  name={coin} />
+      <Line data={data} options={options} style={{ height: '500px', width: '80%' }} key={coin} />
     </div>
   );
 };

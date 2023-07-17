@@ -9,6 +9,7 @@ import Realtimechart from "./Realtimechart";
 import authStore from "../stores/AuthStore";
 import { collection, deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import rootStore, { auth, firestore } from "../stores/RootStore";
+import ChartDetailsCard from "./ChartDetailsCard";
 interface CoinData {
   CoinInfo: {
     Id: string;
@@ -22,6 +23,7 @@ interface CoinData {
       CHANGEPCT24HOUR: number;
       HIGH24HOUR: number;
       LOW24HOUR: number;
+
     };
   };
 }
@@ -129,8 +131,19 @@ const CoinDetailsPage: React.FC = observer(() => {
         </div>
         {/* Display other coin details */}
       </div>
+      <div className="container-chart"> 
       <div className="card-livechart">
-        <Realtimechart />
+           <Realtimechart coin={coin.CoinInfo.Name} />
+      </div>
+      <div className="chartdetails-container">
+      <ChartDetailsCard
+            symbol={coin.CoinInfo.Name}
+            marketCap={coin.DISPLAY.USD.MKTCAP}
+            circulatingSupply={coin.DISPLAY.USD.CIRCULATINGSUPPLY}
+            totalVolume24h={coin.DISPLAY.USD.TOTALVOLUME24H}
+            openDay={coin.DISPLAY.USD.OPENDAY}
+          />
+      </div>
       </div>
     </div>
   );

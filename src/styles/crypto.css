@@ -41,7 +41,18 @@
     background-color: #BB0163;
     color: #fff;
     cursor: pointer;
-    width: 100px;
+    width: 120px;
+    height: 52px;
+  }
+  .details-buttonchart {
+    margin: 10px 15px;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 32px;
+    background-color: #BB0163;
+    color: #fff;
+    cursor: pointer;
+    width: 200px;
     height: 52px;
   }
 
@@ -900,11 +911,13 @@ text-align:left;
 }
 
 .card-livechart{
-  background-color:#f9f9f9;
+  background-color:#fbf5f5;
   border-radius: 32px;
-  width:1500px;
-  height: 500px;
+  flex: 2;
   margin: 5%;
+  display: flex;
+  flex-direction: row;
+  width: 900px;
 }
 
 
@@ -1277,4 +1290,54 @@ border-radius: 32px;
   font-size: 30px;
   font-family: roboto;
   margin-top: 4%;
+}
+
+.chartdetails-container{
+  width: 400px; 
+  height: 500px; 
+
+  background-color: #fff;
+border-radius: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin-top: 4%;
+}
+
+.realtimechart-div{
+  display: flex;
+  flex: 2;
+}
+
+.container-chart{
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.chartdetails-container {
+  font-size: 16px;
+}
+
+.chartdetails-title {
+  text-align: center;
+  font-weight: 200;
+}
+
+.chartdetails-line {
+  margin: 30px 20px;
+  
+}
+
+.buttonchartdetails{
+  display: flex;
+  flex-direction: column;
+  margin-top: 35%;
+  
+}
+
+.buttonchartdetailstext{
+  font-size: 15px;
+  color: #64748B;
+  font-weight: 500;
+  margin:0px 20px;
 }
