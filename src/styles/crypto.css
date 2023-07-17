@@ -153,8 +153,7 @@ button {
   height: 100%;
 }
 
-.footerbar {
-=======
+
   .container {
     max-width: 1100px;
     margin: 0 20px;
@@ -326,10 +325,7 @@ button {
   animation: sunshines 2s infinite;
 }
 
-@keyframes sunshines {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
+
 
   .nav-elements{
     display: flex;
@@ -370,11 +366,8 @@ button {
 
   }
 
-  100% {
-    transform: scale(1.4);
-    opacity: 0;
-  }
-}
+  
+
 
 @keyframes clouds {
   0% {
@@ -1410,7 +1403,6 @@ border-radius: 32px;
   display: flex;
   flex-direction: column;
   margin-top: 35%;
-  
 }
 
 .buttonchartdetailstext{
@@ -1419,3 +1411,7 @@ border-radius: 32px;
   font-weight: 500;
   margin:0px 20px;
 }
+
+
+
+

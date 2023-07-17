@@ -1,5 +1,3 @@
-
-import { Modal } from "@mui/material";
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import authStore from '../stores/AuthStore';
@@ -9,15 +7,11 @@ import '../styles/crypto.css';
 import rootStore from '../stores/RootStore';
 import { getAuth,signOut } from 'firebase/auth';
 
-
 const Consolepage: React.FC = observer(() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTab, setSelectedTab] = useState<"SignIn" | "SignUp">("SignIn");
+  const [selectedTab, setSelectedTab] = useState<'SignIn' | 'SignUp'>('SignIn');
 
-  const handleTabChange = (
-    event: React.MouseEvent<HTMLDivElement>,
-    newTab: "SignIn" | "SignUp"
-  ) => {
+  const handleTabChange = (event: React.MouseEvent<HTMLDivElement>, newTab: 'SignIn' | 'SignUp') => {
     setSelectedTab(newTab);
     openModal();
   };
@@ -41,7 +35,6 @@ const Consolepage: React.FC = observer(() => {
     if (rootStore.authStore.isSignedIn) {
 
       // User is signed in, show sign-out button
-
       return (
         
         <div>
@@ -58,7 +51,6 @@ const Consolepage: React.FC = observer(() => {
     } else {
       // User is not signed in, do not render any button
       return null;
-
     }
   };
   
@@ -78,33 +70,29 @@ const Consolepage: React.FC = observer(() => {
   return (
     <div>
       {renderAuthButton()}
-<!-- 
-      {isModalOpen && (
-        <Modal open={isModalOpen} onClose={closeModal} className="overlay">
-======= -->
       {authStore.isModalOpen && (
         <div className="overlay">
-
           <div className="modal">
             <div className="modal-content">
               <div className="tab-container">
                 <div
-                  className={`tab ${selectedTab === "SignIn" ? "active" : ""}`}
-                  onClick={(event) => handleTabChange(event, "SignIn")}
+                  className={`tab ${selectedTab === 'SignIn' ? 'active' : ''}`}
+                  onClick={(event) => handleTabChange(event, 'SignIn')}
                 >
                   Login
                 </div>
                 <div
-                  className={`tab ${selectedTab === "SignUp" ? "active" : ""}`}
-                  onClick={(event) => handleTabChange(event, "SignUp")}
+                  className={`tab ${selectedTab === 'SignUp' ? 'active' : ''}`}
+                  onClick={(event) => handleTabChange(event, 'SignUp')}
                 >
                   Signup
                 </div>
               </div>
-              {selectedTab === "SignIn" ? <SignIn /> : <SignUp />}
+              {selectedTab === 'SignIn' ? <SignIn /> : <SignUp />}
+              <button onClick={closeModal}>Close</button>
             </div>
           </div>
-        </Modal>
+        </div>
       )}
     </div>
   );

@@ -11,6 +11,7 @@ import '../styles/crypto.css';
 import { useNavigate } from 'react-router-dom';
 import AuthStore from '../stores/AuthStore';
 import rootStore from '../stores/RootStore';
+import AuthDetails from './AuthDetails';
 
 interface UserInput {
   email: string;
@@ -116,6 +117,6 @@ const SignIn: React.FC = observer(() => {
       </div>
     </div>
   );
-};
+});
 
 export default SignIn;
