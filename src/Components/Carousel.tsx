@@ -29,6 +29,10 @@ interface CoinData {
       CHANGEPCT24HOUR: number;
       HIGH24HOUR: number;
       LOW24HOUR: number;
+      MKTCAP:number;
+      CIRCULATINGSUPPLY:number;
+      TOTALVOLUME24H:number;
+      OPENDAY:number;
     };
   };
 }
@@ -39,7 +43,7 @@ const Carousel: React.FC = () => {
   const [topList, setTopList] = useState<CoinData[]>([]);
   const { currency } = CryptoState();
   const carouselRef = useRef<AliceCarousel | null>(null);
-
+  const [selectedCoin, setSelectedCoin] = useState<string | null>(null); // State to store the selected coin name
   const fetchTop24HVol = async () => {
     await fetch(TopList24H(currency))
       .then((res: any) => res.json())
@@ -58,6 +62,7 @@ const Carousel: React.FC = () => {
   const navigate = useNavigate();
 
   const handleCarouselItemClick = (coin: CoinData) => {
+    
     navigate(`/coin-details/${coin.CoinInfo.Name}`, { state: { coin } });
   };
 

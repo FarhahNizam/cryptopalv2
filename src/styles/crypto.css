@@ -1,10 +1,63 @@
 .page {
+
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50vh;
   background-color: #f5f5f5;
 }
+
+  
+  .card {
+    width: 515px; 
+    height: 280px; 
+    padding: 20px;
+    background-color: #fff;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    margin: 10px 15px;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 32px;
+    background-color: #BB0163;
+    color: #fff;
+    cursor: pointer;
+    width: 120px;
+    height: 52px;
+  }
+  .details-buttonchart {
+    margin: 10px 15px;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 32px;
+    background-color: #BB0163;
+    color: #fff;
+    cursor: pointer;
+    width: 200px;
+    height: 52px;
+  }
+
 
 .card {
   width: 515px;
@@ -19,6 +72,7 @@ h2 {
   margin-bottom: 20px;
   text-align: center;
 }
+
 
 .form {
   display: flex;
@@ -100,12 +154,33 @@ button {
 }
 
 .footerbar {
+=======
+  .container {
+    max-width: 1100px;
+    margin: 0 20px;
+    padding: 0 0px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    flex:1;
+  }
+
+  .footer-container{
+    /* width: 100%; */
+   margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+  
+ .footerbar{
   position: relative;
-  margin-top: 40%;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 200px;
+  height: 100px;
   background-color: white;
   z-index: 1;
   opacity: 1;
@@ -121,6 +196,7 @@ button {
   background-color: #ffffff;
   position: relative;
 }
+
 
 .nav-elements {
   display: flex;
@@ -254,6 +330,44 @@ button {
   0% {
     transform: scale(1);
     opacity: 0.6;
+
+  .nav-elements{
+    display: flex;
+    flex: 1;
+    margin-left: 400px;
+    margin-top: 20px;
+    
+  }
+  
+.nav-signin{
+  display: flex;
+  flex: 1.0;
+  margin-left: 300px;
+ 
+}
+  .nav-elements ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+  
+  .nav-elements ul li{
+    margin-right: 60px;
+    margin-top: 20px;
+  }
+  
+  .nav-elements ul a {
+    font-size: 16px;
+    font-weight: 400;
+    color: #2f234f;
+    text-decoration: none;
+  }
+  
+  .nav-elements ul a.active {
+    color: #574c4c;
+    font-weight: 500;
+    position: relative;
+
   }
 
   100% {
@@ -380,11 +494,14 @@ button {
   padding-top: 150px;
 }
 
-.logo {
-  width: 150px;
-  height: 100px;
+
+.logo{
+  width:140px;
+  height:80px;
   display: flex;
   flex: 1;
+  margin-right: 200px;
+  
 }
 
 .logo-footer {
@@ -413,15 +530,27 @@ button {
   font-size: 80px;
   font-family: roboto;
   font-weight: 800;
-  color: #bb0163;
+  color:#BB0163;
+  padding-bottom: 20px;
 }
 
 .landing-page-paragraph {
   font-size: 35px;
   font-family: roboto;
-  color: #7a7a7a;
+  color:#7A7A7A;
+  margin: 10px;
+
 }
-.content-title {
+
+.staying-page-title{
+  font-size: 65px;
+  font-family: roboto;
+  font-weight: 800;
+  color:#BB0163;
+
+}
+
+.content-title{
   font-size: 50px;
   font-family: roboto;
   font-weight: 600;
@@ -443,7 +572,170 @@ button {
   background-position: center;
 }
 
-.FeaturePageBackground {
+
+
+/* ABOUT PAGE */
+.about-page-container {
+  background-color: #F9FAFD;
+}
+
+.about-ilustration{
+  width: 80vw;
+  height: 100vh;
+  background-image: url("../Assets/About\ Illustration.svg");
+  background-size: 45rem;
+  background-repeat: no-repeat;
+  background-position: right;
+  margin: auto;
+  line-height: 3.5rem;
+}
+
+.about-copywriting{
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100px;
+  width: 47%;
+}
+
+.ring-background {
+  position: absolute;
+}
+
+.team-section-header {
+  position: absolute;
+  font-size: 70px;
+  padding-top: 150px;
+  color: white;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.team-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 70%;
+  background-color: #0D0D2B;
+  height: 130vh;
+  border-top-right-radius: 51em 12em;
+    border-top-left-radius: 69em 48em;
+}
+
+.team-profile {
+  color: white;
+  font-size: 50 ;
+}
+
+.linkedinLogo {
+  padding: 1.3rem;
+}
+/* ABOUT PAGE END */
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+  grid-template-rows: 1fr 1fr; /* Two rows with equal height */
+}
+
+.grid-item {
+padding: 20px;
+}
+
+.grid-item:nth-child(odd) {
+  padding-top: 108px;
+}
+
+
+.team-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.team-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.team-card:hover .team-card-inner {
+  transform: rotateY(180deg);
+}
+
+.team-card-front, .team-card-back {
+  position: absolute;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 10%;
+}
+
+.team-card-front {
+  background-color: #fff;
+  color: black;
+  height: 36vh;
+  padding-top: 3rem;
+}
+
+.team-card-front-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.team-card-back {
+  background-color: #fff;
+  color: black;
+  transform: rotateY(180deg);
+  height: 36vh;
+  padding-top: 3rem;
+}
+
+.team-member{
+  margin: 0;
+  color: #000;
+  font-size: 40px;
+  text-align: center;
+  line-height: 70px;
+}
+
+.team-position{
+  margin: 0;
+  color: #000;
+  font-size: 20px;
+  text-align: center;
+}
+
+.team-info {
+  margin: 0;
+  color: #000;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.team-info p {
+  margin: 0;
+}
+
+
+
+/* About page */
+
+
+.FeaturePageBackground{
   width: 100vw;
   height: 100vh;
   background-image: url("../Assets/ourfeatues.svg");
@@ -452,7 +744,7 @@ button {
 }
 
 .feature-page {
-  padding-top: 200px;
+  padding-top: 290px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -461,7 +753,7 @@ button {
 }
 
 .feature-page > * {
-  margin-bottom: 10px; /* Adjust this value to set the desired spacing */
+  margin-bottom: 30px; /* Adjust this value to set the desired spacing */
 }
 
 .feature-page-paragraph {
@@ -469,6 +761,9 @@ button {
   font-family: roboto;
   color: #fff;
   font-weight: 800;
+
+  margin-top: 2%;
+
 }
 
 .feature-page-paragraph-sub {
@@ -489,10 +784,10 @@ button {
   border-radius: 20px;
 }
 
-.CryptotablePageBackground {
+.StayInformedPageBackground{
   width: 100vw;
   height: 100vh;
-  background-image: url("../Assets/tradesecurely.svg");
+  background-image: url("../Assets/page3stayinformed.svg");
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -539,7 +834,7 @@ button {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding-bottom: 100px;
+  padding-bottom: 300px;
 }
 
 .explorecrypto-page-title {
@@ -680,12 +975,15 @@ button {
   padding-top: 2%;
 }
 
-.card-livechart {
-  background-color: #f9f9f9;
+
+.card-livechart{
+  background-color:#fbf5f5;
   border-radius: 32px;
-  width: 1500px;
-  height: 500px;
+  flex: 2;
   margin: 5%;
+  display: flex;
+  flex-direction: row;
+  width: 900px;
 }
 
 .coindetails-percentage {
@@ -865,4 +1163,259 @@ button {
 .preferences label {
   display: block;
   padding-bottom: 4px;
+}
+
+
+.favorite-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.favorite-icon {
+  color: gold;
+}
+
+.non-favorite-icon {
+  color: gray;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 0fr); 
+  column-gap: 80px;
+  row-gap: 40px; 
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+
+
+.card-news{
+  display: flex;
+  flex-direction: row;
+      width: 470px; 
+    height: 300px; 
+    padding: 4%;
+    background-color: #fff;
+   border-radius: 32px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-image{
+
+display: flex;
+width: 180px;
+height: 200px;
+border-radius: 35px;
+flex: 1;
+}
+
+
+.logo-image{
+  width: 50px;
+  height: 50px;
+  border-radius:50% ;
+  margin:20% 0% 5%; 
+  
+}
+.source-logo-section{
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+}
+
+.news-source{
+  flex: 0.5;
+  font-family: Roboto;
+  color: #6C7072;
+  font-size: 20;
+  margin:30% 10% 0%; 
+  font-weight: 600;
+
+}
+
+.news-column-div{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 4%;
+
+
+}
+
+.news-content{
+  flex: 2;
+  display: flex;
+  width: 100px;
+  height: 100px;
+  flex-direction: column;
+  margin: 3%;
+  font-family: Roboto;
+  margin-top: 0px;
+}
+
+.NewsPage{
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../Assets/newsbackground.svg");
+  background-size: cover;
+  background-position: center;
+  overflow-y: auto;
+}
+.load-more-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes progressBarHighlight {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.button {
+  border: 1px solid rgb(0, 17, 255);
+  border-radius: 3px;
+  width: 250px;
+  height: 60px;
+  display: block;
+  background: linear-gradient(to right, rgb(150, 150, 235) 50%, rgb(172, 5, 255) 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all .5s ease-out;
+}
+
+.button:hover {
+  background-position: left bottom;
+}
+
+.text {
+  text-align: center;
+  margin: 5%;
+  font-size: 20px;
+  line-height: 30px; 
+  font-family: Roboto;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  transition: all .6s ease-out;
+  display: block;
+}
+
+.text:hover {
+  color: white;  
+}
+
+.card-container-transition {
+  transition: opacity 5.0s ease-in-out;
+}
+
+.card-hover:hover {
+  /* Apply your desired hover styles */
+  transform: scale(1.01);
+  box-shadow: 5px 5px 10px 10px #FF78BF;
+border-radius: 32px;
+}
+
+.button-viewmore{
+  border: none;
+  border-radius: 32px;
+  background-color: #FF78BF;
+  color: #fff;
+  cursor: pointer;
+  width: 265px;
+  height: 65px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.CryptoversebackgroudPage{
+  background-color: #0D0D2B;
+  width: 100vw;
+  height: 50vh;
+
+}
+.cryptoverse-paragraph{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cryptoverse-title{
+  color: white;
+  font-size: 50px;
+  font-weight: 600;
+  font-family: roboto;
+  margin-top: 10%
+}
+
+.cryptoverse-content{
+  color: #E0E0E0;
+  font-size: 30px;
+  font-family: roboto;
+  margin-top: 4%;
+}
+
+.chartdetails-container{
+  width: 400px; 
+  height: 500px; 
+
+  background-color: #fff;
+border-radius: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin-top: 4%;
+}
+
+.realtimechart-div{
+  display: flex;
+  flex: 2;
+}
+
+.container-chart{
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.chartdetails-container {
+  font-size: 16px;
+}
+
+.chartdetails-title {
+  text-align: center;
+  font-weight: 200;
+}
+
+.chartdetails-line {
+  margin: 30px 20px;
+  
+}
+
+.buttonchartdetails{
+  display: flex;
+  flex-direction: column;
+  margin-top: 35%;
+  
+}
+
+.buttonchartdetailstext{
+  font-size: 15px;
+  color: #64748B;
+  font-weight: 500;
+  margin:0px 20px;
 }

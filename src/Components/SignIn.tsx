@@ -1,19 +1,26 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { getAuth, signInWithEmailAndPassword, AuthError } from "firebase/auth";
-import "../styles/crypto.css";
-import { auth } from "../services/firebaseconfig";
-import { IconButton } from "@mui/material";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import AuthDetails from "../Components/AuthDetails";
-import { useNavigate } from "react-router-dom";
+
+import { observer } from 'mobx-react-lite';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { getAuth, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'firebase/auth';
+import { IconButton } from '@mui/material';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../styles/crypto.css';
+import { useNavigate } from 'react-router-dom';
+import AuthStore from '../stores/AuthStore';
+import rootStore from '../stores/RootStore';
 
 interface UserInput {
   email: string;
   password: string;
 }
 
-const SignIn: React.FC = () => {
+interface SignInProps {
+  onSignInSuccess: () => void;
+}
+const SignIn: React.FC = observer(() => {
   const {
     register,
     handleSubmit,
@@ -30,11 +37,29 @@ const SignIn: React.FC = () => {
 
   const onSubmit = async (data: UserInput) => {
     const { email, password } = data;
-
+  
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log("User signed in successfully!");
-      redirectToLogin();
+
+      const auth = getAuth();
+  
+      // Enable persistence
+      await setPersistence(auth, browserLocalPersistence);
+  
+      // Sign in the user with email and password
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+  
+      rootStore.authStore.setAuthUser({ uid: user.uid, username: email });
+     
+      // Call the handleSignInSuccess action in the AuthStore
+      rootStore.authStore.closeModal();
+
+      console.log('User signed in successfully!');
+      console.log('UID:', user.uid,email); // Log the UID
+     
+      // Display success toast message
+      toast.success('Logged in successfully!', {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } catch (error: any) {
       if (error.code === "auth/wrong-password") {
         setError("password", { message: "Invalid password.Please try again" });
@@ -43,7 +68,7 @@ const SignIn: React.FC = () => {
       }
     }
   };
-
+  
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };

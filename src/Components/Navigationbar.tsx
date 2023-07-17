@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import rootStore from '../stores/RootStore';
-import Logo from '../Assets/Logo CryptoPal.svg';
+import Logo from '../Assets/grouplogo.svg';
 import AuthDetails from './AuthDetails';
 import Consolepage from '../Pages/Consolepage';
 import '../styles/crypto.css';
@@ -35,11 +35,12 @@ const NavBar: React.FC = observer(() => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="">
       <div className="container">
-        <img className="logo" src={Logo} alt="CryptoPal Logo" />
         <div className="nav-elements">
           <ul>
+          <img className="logo" src={Logo} alt="CryptoPal Logo" />
+
             <li>
               <NavLink to="/home">Crypto</NavLink>
             </li>
@@ -55,11 +56,15 @@ const NavBar: React.FC = observer(() => {
             <li>
               <NavLink to="/help">Help</NavLink>
             </li>
+            <li>
+              <NavLink to="/news">News</NavLink>
+            </li>
           </ul>
         </div>
-
+ 
+ <div className='nav-signin'> 
         <Consolepage />
-
+        </div>
       </div>
     </nav>
   );

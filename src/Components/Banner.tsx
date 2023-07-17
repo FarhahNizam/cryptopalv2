@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/material";
 
 const Banner:React.FC=()=>{
     return(
-        <div>
+        <div className="">
 
         </div>
     )

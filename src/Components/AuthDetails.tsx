@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import rootStore from '../stores/RootStore';
-import { auth } from '../services/firebaseconfig';
+import rootStore, { auth } from '../stores/RootStore';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
