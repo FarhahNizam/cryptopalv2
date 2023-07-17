@@ -50,10 +50,9 @@ const SignUp: React.FC = () => {
     if (!/\d/.test(value)) {
       return "Password should include numbers";
     }
-  
+
     return true;
   };
-  
 
   const validateConfirmPassword = (value: string) => {
     const password = getValues("password");
@@ -77,8 +76,6 @@ const SignUp: React.FC = () => {
   return (
     <div>
       <div className="card">
-        <h2>Sign Up</h2>
-
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <input type="email" placeholder="Email" {...register("email")} />
 
@@ -97,14 +94,16 @@ const SignUp: React.FC = () => {
               validate: validateConfirmPassword,
             })}
           />
-           {errors.password &&(
+          {errors.password && (
             <p className="error-message">{errors.password.message}</p>
           )}
           {errors.confirmPassword && (
             <p className="error-message">{errors.confirmPassword.message}</p>
           )}
-<div className="button-form"> 
-          <button className="form-button" type="submit">Create account</button>
+          <div className="button-form">
+            <button className="form-button" type="submit">
+              Create account
+            </button>
           </div>
         </form>
       </div>
