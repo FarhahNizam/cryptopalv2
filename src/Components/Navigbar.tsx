@@ -6,9 +6,24 @@ import { IconButton } from "@mui/material";
 import twitter from '../Assets/twitter.svg';
 import facebook from '../Assets/facebook.svg';
 import instagram from '../Assets/instagram.svg';
+import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
+import rootStore from '../stores/RootStore';
+import Consolepage from '../Pages/Consolepage';
 
-const Footer: React.FC = observer(() =>{
+const Navigbar: React.FC = observer(() =>{
+    let navigate = useNavigate();
+
+    const userSignOut = () => {
+      rootStore.authStore.clearAuthUser();
+      navigate('/consolepage');
+    };
+  
+    const openModal = () => {
+  
+      navigate('/consolepage');
+    };
+  
   return (
     <div className="footerbar">
       <div className="footer-container">
@@ -29,7 +44,7 @@ const Footer: React.FC = observer(() =>{
               <NavLink to="/watchlist">Watchlist</NavLink>
             </li>
             <li>
-              <NavLink to="/news">News</NavLink>
+              <NavLink to="/help">News</NavLink>
             </li>
             <li>
               <NavLink to="/aboutus">About us</NavLink>
@@ -40,25 +55,15 @@ const Footer: React.FC = observer(() =>{
             </div>
            
           </ul>
-          <li className="social-icons">
-              <IconButton href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <img src={facebook} />
-              </IconButton>
-              <IconButton href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <img src={twitter} />
-
-              </IconButton>
-              <IconButton href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <img src={instagram} />
-
-              </IconButton>
-            </li>
+          <div className="console-home">
+          <Consolepage />
+            </div>
         </div>
-      
+ 
       </div>
-      <span className='footer-bottom-text'> Copyright @CryptoPal 2023. All Rights Reserved. </span>
+    
     </div>
   );
 });
 
-export default Footer;
+export default Navigbar;

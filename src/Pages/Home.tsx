@@ -12,12 +12,13 @@ import CryptoTable from "../Components/CryptoTable";
 import ExploreCryptocurrency from "../Components/ExploreCryptocurrency";
 import Footer from "../Components/Footer";
 import Cryptoverse from "../Components/Cryptoverse";
+import Navigbar from "../Components/Navigbar";
 const Home=() => {
     return(
         <div>
             
 <div className="Container"> 
-<NavBar/>
+<Navigbar/>
 <LandingPage />
 <Carousel />
 <OurFeatures />

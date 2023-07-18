@@ -7,6 +7,8 @@ export interface CoinDetails {
   price: string;
   imageurl: string;
   changepct: number;
+  userId: string;
+  
   // Add other properties as needed
 }
 

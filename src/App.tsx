@@ -21,6 +21,7 @@ import authStore from './stores/AuthStore';
 import Watchlist from '../src/Pages/WatchList';
 import News from '../src/Pages/News';
 import { ToastContainer } from 'react-toastify';
+import WatchListDetails from './Components/WatchListDetails';
 
 
 
@@ -50,6 +51,8 @@ const App: React.FC = () => {
           {/* <Route path="/coin-details/name" element={<CoinDetailsPage />} />  */}
 
           <Route path="/coin-details/:coinName" element={<CoinDetailsPage />} />
+          <Route path="/coin-detailsa/:name" element={<WatchListDetails />} />
+         
         </Routes>
       </Provider>
     </>

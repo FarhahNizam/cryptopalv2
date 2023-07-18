@@ -10,6 +10,8 @@ import authStore from "../stores/AuthStore";
 import { collection, deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import rootStore, { auth, firestore } from "../stores/RootStore";
 import ChartDetailsCard from "./ChartDetailsCard";
+import { CoinDetails } from "../stores/FavouriteStore";
+
 interface CoinData {
   CoinInfo: {
     Id: string;
@@ -23,7 +25,6 @@ interface CoinData {
       CHANGEPCT24HOUR: number;
       HIGH24HOUR: number;
       LOW24HOUR: number;
-
     };
   };
 }
@@ -31,30 +32,26 @@ interface CoinData {
 const CoinDetailsPage: React.FC = observer(() => {
   const location = useLocation();
   const { coin } = location.state;
-  const coinDetails = {
-    coinId: coin.CoinInfo.Id,
-    name: coin.CoinInfo.Name,
-    fullName: coin.CoinInfo.FullName,
-    price: coin.DISPLAY.USD.PRICE,
-    changepct:coin.DISPLAY.USD.CHANGEPCT24HOUR,
-    // Add other properties as needed
-  };
 
-  const handleToggleFavorite = async (e:any) => {
+  console.log(location.state)
+  const coinDetails: CoinDetails = location.state as CoinDetails;
+  console.log(coin);
+
+  const handleToggleFavorite = async (e: any) => {
     e.preventDefault();
     try {
       const currentUser = auth.currentUser; // Get the current authenticated user using Firebase auth
-        
+
       if (currentUser) {
         const userId = currentUser.uid; // Get the user's UID
         const coinId = coin.CoinInfo.Id;
         const favoritesRef = collection(firestore, "favorites", userId, coinId);
-  
+
         // Check if the coin is already in the user's favorites
         const favoriteDoc = doc(favoritesRef, coinId);
         const favoriteSnapshot = await getDoc(favoriteDoc);
         const isFavorite = favoriteSnapshot.exists();
-  
+
         if (isFavorite) {
           // Remove the coin from favorites
           await deleteDoc(favoriteDoc);
@@ -65,9 +62,9 @@ const CoinDetailsPage: React.FC = observer(() => {
             name: coin.CoinInfo.Name,
             fullName: coin.CoinInfo.FullName,
             price: coin.DISPLAY.USD.PRICE,
-            imageurl:coin.CoinInfo.ImageUrl,
-            changepct:coin.DISPLAY.USD.CHANGEPCT24HOUR,
-
+            imageurl: coin.CoinInfo.ImageUrl,
+            changepct: coin.DISPLAY.USD.CHANGEPCT24HOUR,
+            userId: currentUser.uid, // Set userId to the current user's UID
             // Add other properties as needed
           };
           // Add the coin to favorites
@@ -75,8 +72,7 @@ const CoinDetailsPage: React.FC = observer(() => {
           authStore.favoriteStore.addToFavorites(coinDetails);
         }
       } else {
-        // Handle the case when the user is not signed in
-        // You can show a login modal or redirect to the login page
+
       }
     } catch (error) {
       // Handle the FirebaseError
@@ -84,7 +80,11 @@ const CoinDetailsPage: React.FC = observer(() => {
       // You can show an error message to the user or perform other actions
     }
   };
-  
+
+  // Check if the coin is already in the user's favorites
+  const isFavorite = authStore.favoriteStore.favorites.some(
+    (favorite) => favorite.coinId === coin.CoinInfo.Id && favorite.userId === auth.currentUser?.uid
+  );
 
   return (
     <div>
@@ -104,9 +104,9 @@ const CoinDetailsPage: React.FC = observer(() => {
             <IconButton
               onClick={handleToggleFavorite}
               style={{ marginLeft: 10 }}
-              title={authStore.favoriteStore.isFavorite(coin.CoinInfo.Id) ? "Remove from favorites" : "Add to favorites"}
+              title={isFavorite ? "Remove from favorites" : "Add to favorites"}
             >
-              {authStore.favoriteStore.isFavorite(coin.CoinInfo.Id) ? (
+              {isFavorite ? (
                 <FaHeart color="red" />
               ) : (
                 <FaRegHeart />

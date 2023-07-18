@@ -8,6 +8,7 @@ import JohananPic from "../Assets/Joe.png";
 import Pink_circle from "../Assets/Pink-circle.svg";
 import linkedinLogo from "../Assets/linkedin.png";
 import { Padding } from "@mui/icons-material";
+import Navigbar from "../Components/Navigbar";
 
 const team = [
   {
@@ -43,7 +44,7 @@ const team = [
 const AboutUs: React.FC = () => {
   return (
     <>
-      <NavBar />
+     <Navigbar/>
       <div className="about-page-container">
         <div className="about-ilustration">
           <div className="about-copywriting">

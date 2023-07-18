@@ -186,7 +186,7 @@ const MarketTable: React.FC = () => {
           </thead>
           <tbody>
             {paginatedData.map((coin) => (
-              <tr key={coin.CoinInfo.Id}>
+              <tr key={coin.CoinInfo.Id} className='selector-table-row'>
                 <td className="tdStyle">
                   <div
                     className="tableimage-fullname"

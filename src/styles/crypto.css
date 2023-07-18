@@ -144,14 +144,7 @@ button {
   height: 100%;
 }
 
-.footer-container {
-  width: 100%;
-  margin: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
+
 
 
   .container {
@@ -189,6 +182,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 400px;
+ 
 }
 .navbar {
   height: 60px;
@@ -200,6 +195,8 @@ button {
 .nav-elements {
   display: flex;
   flex: 2;
+  
+
 }
 
 .nav-elements ul {
@@ -325,7 +322,7 @@ button {
   animation: sunshines 2s infinite;
 }
 
-
+/* Nav bar */
 
   .nav-elements{
     display: flex;
@@ -365,6 +362,41 @@ button {
     position: relative;
 
   }
+
+/*foot bar */
+.foot-elements {
+  display: flex;
+  flex: 1;
+  margin-right: 400px;
+  margin-top: 20px;
+}
+
+.foot-elements ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.foot-elements ul li {
+  margin-right: 60px;
+  margin-top: 20px;
+}
+
+.foot-elements ul a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2f234f;
+  text-decoration: none;
+}
+
+.foot-elements ul a.active {
+  color: #BB0163;
+  font-weight: 500;
+  position: relative;
+  font-size: 16px;
+  /* Add glow effect */
+  
+}
 
   
 
@@ -489,8 +521,8 @@ button {
 
 
 .logo{
-  width:140px;
-  height:80px;
+  width:160px;
+  height:100px;
   display: flex;
   flex: 1;
   margin-right: 200px;
@@ -498,14 +530,18 @@ button {
 }
 
 .logo-footer {
-  margin-left: 80px;
+  width:160px;
+  height:100px;
+  display: flex;
+  margin-left:80px ;
+  margin-top: 30px;
 }
 
 .Container {
   width: 100vw;
   height: 100vh;
-  height: 100vh; /* Set the desired height */
   overflow-y: auto;
+ 
 }
 
 .landing-page {
@@ -846,7 +882,7 @@ padding: 20px;
 .social-icons {
   display: flex;
   justify-content: flex-end;
-  padding-right: 100px;
+  margin-left: 40%;
   flex: 1;
   /* Add this line to push the icons to the left */
 }
@@ -854,6 +890,7 @@ padding: 20px;
 .footer-bottom-text {
   display: flex;
   justify-content: center;
+  padding-bottom: 1%;
 }
 
 .error-title {
@@ -1056,16 +1093,26 @@ padding: 20px;
 
 @keyframes glowing {
   0% {
-    box-shadow: 0 0 5px #f4ad42, 0 0 20px #f4ad42, 0 0 40px #f4ad42,
-      0 0 60px #f4ad42;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px;
+
+  }
+  50% {
+    background-color: #F9FAFD;
+    border-radius: 5px;
   }
   100% {
-    box-shadow: 0 0 5px #f4ad42, 0 0 20px #f4ad42, 0 0 40px #f4ad42,
-      0 0 80px #f4ad42;
+    background-color: transparent;
+    border-radius: 5px;
+
   }
 }
 
 .tableimage-fullname:hover {
+  animation: glowing 1s infinite;
+}
+.selector-table-row{
   animation: glowing 1s infinite;
 }
 
@@ -1099,17 +1146,17 @@ padding: 20px;
 
 .dropdown-content {
   margin-top: 10px;
-  min-width: 800px;
+ width: 800px;
   background-color: #f9fafd;
   border: 1px solid #ddd;
   border-radius: 0 0 16px 16px;
   box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-  height: 100px;
+  height: 160px;
   justify-content: flex-start;
   display: flex;
   align-items: flex-start;
   font-family: Roboto;
-  font-size: 30px;
+  font-size: 23px;
   padding: 3% 2% 0%;
   transition: height 0.4s ease-in-out;
   opacity: 0; /* Start with opacity 0 */
@@ -1413,5 +1460,8 @@ border-radius: 32px;
 }
 
 
-
+.console-home{
+  display: flex;
+margin-left: 200px;
+}
 

@@ -1,28 +1,89 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import NavBar from "../Components/Navigationbar";
 import favoriteStore, { CoinDetails } from "../stores/FavouriteStore";
 import "../styles/crypto.css";
 import authStore from "../stores/AuthStore";
+import { auth } from "../stores/RootStore";
+import Navigbar from "../Components/Navigbar";
+interface CoinData {
+  CoinInfo: {
+    Id: string;
+    ImageUrl: string;
+    FullName: string;
+    Name: string;
+  };
+  DISPLAY: {
+    USD: {
+      PRICE: string;
+      CHANGEPCT24HOUR: number;
+      HIGH24HOUR: number;
+      LOW24HOUR: number;
+    };
+  };
+  RAW: {
+    USD: {
+      MKTCAP: number;
+      VOLUME24HOURTO: number;
+    };
+  };
+}
 
 const Watchlist = observer(() => {
-  const favorites: CoinDetails[] = favoriteStore.favorites;
   const isSignedIn: boolean = authStore.isSignedIn;
-
   const navigate = useNavigate();
+  const currentUser = auth.currentUser?.uid;
+  
+
+  const favorites: CoinDetails[] = favoriteStore.favorites.filter(
+    (coin) => coin.userId === currentUser
+  );
+
+  console.log(favorites)
 
   const handleCarouselItemClick = (coin: CoinDetails) => {
-    favoriteStore.setSelectedCoin(coin);
-    navigate(`/coin-details/${coin.name}`, { state: { coin } });
+    if (coin && coin.coinId) {
+      const coinDetails = {
+        coinId: coin.coinId,
+        name: coin.name,
+        fullName: coin.fullName,
+        price: coin.price,
+        imageurl: coin.imageurl,
+        changepct: coin.changepct,
+        userId: auth.currentUser?.uid ?? "",
+      };
+
+      const favoritesJson = JSON.stringify(coinDetails);
+      navigate(`/coin-detailsa/${coin.name}`, { state: favoritesJson });
+    } else {
+      console.error("Invalid coin object or missing 'coinId' property");
+    }
   };
 
+   // Convert favorites data into JSON object
+   const favoritesJson = favorites.map((coin: CoinDetails) => {
+    return {
+      coinId: coin.coinId,
+      name: coin.name,
+      fullName: coin.fullName,
+      price: coin.price,
+      imageurl: coin.imageurl,
+      changepct: coin.changepct,
+      userId: auth.currentUser?.uid ?? "",
+    };
+  });
+
+  // Convert the JSON object to a JSON string
+  const favoritesJsonString = JSON.stringify(favoritesJson);
+
+  console.log(favoritesJsonString);
   return (
     <>
       <div>
-        <NavBar />
+      <Navigbar/>      
       </div>
 
       <div className="coindetails-page">
@@ -41,34 +102,36 @@ const Watchlist = observer(() => {
                 </tr>
               </thead>
               <tbody>
-                {favorites.map((coin: CoinDetails) => (
-                  <tr key={coin.coinId}>
-                    <td className="tdStyle">
-                      <div
-                        onClick={() => handleCarouselItemClick(coin)}
-                        className="tableimage-fullname"
+                {favorites.map((coin: CoinDetails) => {
+                  return (
+                    <tr key={coin.coinId}>
+                      <td className="tdStyle">
+                        <div
+                          onClick={() => handleCarouselItemClick(coin)}
+                          className="tableimage-fullname"
+                        >
+                          <img
+                            src={`https://www.cryptocompare.com${coin.imageurl}`}
+                            height="60"
+                            style={{ marginBottom: 10 }}
+                            alt={coin.fullName}
+                          />
+                          <span className="coindetails-symbol2">
+                            {coin.fullName}
+                          </span>
+                          <span className="markettable-symbol">{coin.name}</span>
+                        </div>
+                      </td>
+                      <td className="tdStyle">{coin.price}</td>
+                      <td
+                        className={coin.changepct > 0 ? "positive" : "negative"}
                       >
-                        <img
-                          src={`https://www.cryptocompare.com${coin.imageurl}`}
-                          height="60"
-                          style={{ marginBottom: 10 }}
-                          alt={coin.fullName}
-                        />
-                        <span className="coindetails-symbol2">
-                          {coin.fullName}
-                        </span>
-                        <span className="markettable-symbol">{coin.name}</span>
-                      </div>
-                    </td>
-                    <td className="tdStyle">{coin.price}</td>
-                    <td
-                      className={coin.changepct > 0 ? "positive" : "negative"}
-                    >
-                      {coin.changepct > 0 ? "+" : ""}
-                      {coin.changepct}%
-                    </td>
-                  </tr>
-                ))}
+                        {coin.changepct > 0 ? "+" : ""}
+                        {coin.changepct}%
+                      </td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           ) : (
