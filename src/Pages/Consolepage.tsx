@@ -8,11 +8,12 @@ import rootStore from '../stores/RootStore';
 import { getAuth, signOut } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const Consolepage: React.FC = observer(() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState<'SignIn' | 'SignUp'>('SignIn');
-
+  const navigate=useNavigate();
   const handleTabChange = (event: React.MouseEvent<HTMLDivElement>, newTab: 'SignIn' | 'SignUp') => {
     setSelectedTab(newTab);
     openModal();
@@ -48,6 +49,8 @@ const Consolepage: React.FC = observer(() => {
     }
   };
 
+  
+
   const handleSignOut = () => {
     const auth = getAuth();
     signOut(auth)
@@ -55,6 +58,7 @@ const Consolepage: React.FC = observer(() => {
         rootStore.authStore.clearAuthUser();
         toast.dismiss(); // Close any remaining Toastify messages
         console.log('User signed out successfully!');
+        navigate('/home');
       })
       .catch((error: any) => {
         console.log('Error signing out:', error.message);

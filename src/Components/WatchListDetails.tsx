@@ -9,6 +9,7 @@ import ChartDetailsCard from "./ChartDetailsCard";
 import { auth, firestore } from "../stores/RootStore";
 import { collection, deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import { CoinDetails } from "../stores/FavouriteStore";
+import Navigbar from "./Navigbar";
 
 interface Coin {
   coinId: string;
@@ -73,7 +74,7 @@ const WatchListDetails = () => {
   );
   return (
     <div>
-    <Navigationbar />
+    <Navigbar />
     <div className="coindetails-page">
       <div className="coindetails-image">
         <img

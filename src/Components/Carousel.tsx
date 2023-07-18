@@ -77,10 +77,9 @@ const Carousel: React.FC = () => {
     const name=coin.CoinInfo.Name;
     return (
       
-      <div className="carouselItem" key={id}  
-      onClick={() => handleCarouselItemClick(coin)}>
+      <div className="carouselItem" key={id}  >
      
-        <div className="cardcrypto">
+        <div className="cardcrypto" onClick={() => handleCarouselItemClick(coin)}>
           <div className="containercrypto">
             <span className="sun">
               <img

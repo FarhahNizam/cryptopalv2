@@ -11,6 +11,8 @@ import { collection, deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import rootStore, { auth, firestore } from "../stores/RootStore";
 import ChartDetailsCard from "./ChartDetailsCard";
 import { CoinDetails } from "../stores/FavouriteStore";
+import NavBar from "../Components/Navigationbar";
+import Navigbar from "./Navigbar";
 
 interface CoinData {
   CoinInfo: {
@@ -88,7 +90,7 @@ const CoinDetailsPage: React.FC = observer(() => {
 
   return (
     <div>
-      <Navigationbar />
+      <Navigbar/>
       <div className="coindetails-page">
         <div className="coindetails-image">
           <img

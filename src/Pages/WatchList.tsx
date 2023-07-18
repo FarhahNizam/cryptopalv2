@@ -142,7 +142,7 @@ const Watchlist = observer(() => {
         ) : (
           <div style={{ textAlign: "center" }}>
             <span className="error-title">
-              Please sign in to view your watchlist.
+            Oops! Your watchlist is empty :(
             </span>
           </div>
         )}

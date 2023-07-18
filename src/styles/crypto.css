@@ -271,7 +271,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
+  
 }
 
 .cardcrypto {
@@ -894,7 +894,7 @@ padding: 20px;
 }
 
 .error-title {
-  font-size: 35px;
+  font-size: 20px;
   font-family: Roboto;
   font-weight: 300;
   display: flex;
@@ -1093,7 +1093,7 @@ padding: 20px;
 
 @keyframes glowing {
   0% {
-    background-color: transparent;
+    background-color: #F9FAFD;
     border-radius: 5px;
     border: 1px;
 
@@ -1103,7 +1103,7 @@ padding: 20px;
     border-radius: 5px;
   }
   100% {
-    background-color: transparent;
+    background-color: #F9FAFD;
     border-radius: 5px;
 
   }
@@ -1112,9 +1112,7 @@ padding: 20px;
 .tableimage-fullname:hover {
   animation: glowing 1s infinite;
 }
-.selector-table-row{
-  animation: glowing 1s infinite;
-}
+
 
 .dropdown {
   margin-bottom: 10px;

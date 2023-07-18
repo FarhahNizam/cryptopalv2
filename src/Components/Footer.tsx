@@ -32,7 +32,7 @@ const Footer: React.FC = observer(() =>{
               <NavLink to="/news">News</NavLink>
             </li>
             <li>
-              <NavLink to="/aboutus">About us</NavLink>
+              <NavLink to="/aboutus">About</NavLink>
             </li>
             <li>
               <NavLink to="/help">Help</NavLink>
