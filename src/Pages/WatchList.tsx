@@ -9,6 +9,7 @@ import "../styles/crypto.css";
 import authStore from "../stores/AuthStore";
 import { auth } from "../stores/RootStore";
 import Navigbar from "../Components/Navigbar";
+import Footer from "../Components/Footer";
 interface CoinData {
   CoinInfo: {
     Id: string;
@@ -146,6 +147,7 @@ const Watchlist = observer(() => {
             </span>
           </div>
         )}
+       
       </div>
     </>
   );

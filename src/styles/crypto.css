@@ -540,6 +540,7 @@ button {
 .Container {
   width: 100vw;
   height: 100vh;
+
   overflow-y: auto;
  
 }
@@ -882,7 +883,7 @@ padding: 20px;
 .social-icons {
   display: flex;
   justify-content: flex-end;
-  margin-left: 40%;
+  margin-left: 30%;
   flex: 1;
   /* Add this line to push the icons to the left */
 }
@@ -1131,7 +1132,7 @@ padding: 20px;
   align-items: center;
   justify-content: space-between;
   font-family: Roboto;
-  font-size: 30px;
+  font-size: 20px;
   padding: 3% 2% 0%;
   position: relative; /* Add relative positioning */
   overflow: hidden; /* Hide content overflow */
@@ -1154,7 +1155,7 @@ padding: 20px;
   display: flex;
   align-items: flex-start;
   font-family: Roboto;
-  font-size: 23px;
+  font-size: 20px;
   padding: 3% 2% 0%;
   transition: height 0.4s ease-in-out;
   opacity: 0; /* Start with opacity 0 */
@@ -1301,7 +1302,7 @@ flex: 1;
   background-image: url("../Assets/newsbackground.svg");
   background-size: cover;
   background-position: center;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 .load-more-container{
   display: flex;

@@ -9,7 +9,8 @@ import { getAuth, signOut } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-
+import {ConfirmToast} from 'react-confirm-toast';
+import swal from 'sweetalert';
 const Consolepage: React.FC = observer(() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState<'SignIn' | 'SignUp'>('SignIn');
@@ -50,20 +51,33 @@ const Consolepage: React.FC = observer(() => {
   };
 
   
-
+ 
   const handleSignOut = () => {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        rootStore.authStore.clearAuthUser();
-        toast.dismiss(); // Close any remaining Toastify messages
-        console.log('User signed out successfully!');
-        navigate('/home');
-      })
-      .catch((error: any) => {
-        console.log('Error signing out:', error.message);
-      });
+    swal({
+      title: "Confirm Sign Out",
+      text: "Are you sure you want to log out?",
+      icon: "warning",
+      buttons: ["Cancel", "Confirm"],
+      dangerMode: true,
+    })
+    .then((confirmed) => {
+      if (confirmed) {
+        // User confirmed, proceed with sign-out action
+        const auth = getAuth();
+        signOut(auth)
+          .then(() => {
+            rootStore.authStore.clearAuthUser();
+            console.log('User signed out successfully!');
+          })
+          .catch((error: any) => {
+            console.log('Error signing out:', error.message);
+          });
+      } else {
+        closeModal();
+      }
+    });
   };
+  
 
   return (
     <div>
@@ -92,7 +106,11 @@ const Consolepage: React.FC = observer(() => {
           </div>
         </div>
       )}
-      <ToastContainer autoClose={false} /> {/* Add ToastContainer outside the modal */}
+      <ToastContainer autoClose={false} />
+       {/* Add ToastContainer outside the modal */}
+
+     
+
     </div>
   );
 });

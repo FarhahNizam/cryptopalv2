@@ -5,6 +5,7 @@ import WebSocketConnection from "../services/WebsocketConnection";
 import "../styles/crypto.css";
 import ReactiveButton from 'reactive-button';
 import Navigbar from "../Components/Navigbar";
+import Footer from "../Components/Footer";
 
 interface NewsItem {
   id: string;
@@ -141,6 +142,8 @@ const News: React.FC = () => {
             
           )}
         </div>
+        <Footer />
+
       </div>
     </>
   );

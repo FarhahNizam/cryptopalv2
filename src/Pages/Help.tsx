@@ -3,6 +3,7 @@ import NavBar from "../Components/Navigationbar";
 import DropDownBox from "../Components/DropDownBox";
 import '../styles/crypto.css';
 import Navigbar from "../Components/Navigbar";
+import Footer from "../Components/Footer";
 
 const Help = () => {
   const contentItems = [
@@ -72,6 +73,7 @@ const Help = () => {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
