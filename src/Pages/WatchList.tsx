@@ -1,13 +1,23 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { observer } from "mobx-react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import NavBar from "../Components/Navigationbar";
 import favoriteStore, { CoinDetails } from "../stores/FavouriteStore";
 import "../styles/crypto.css";
 import authStore from "../stores/AuthStore";
 
-const Watchlist = () => {
+const Watchlist = observer(() => {
   const favorites: CoinDetails[] = favoriteStore.favorites;
   const isSignedIn: boolean = authStore.isSignedIn;
+
+  const navigate = useNavigate();
+
+  const handleCarouselItemClick = (coin: CoinDetails) => {
+    favoriteStore.setSelectedCoin(coin);
+    navigate(`/coin-details/${coin.name}`, { state: { coin } });
+  };
 
   return (
     <>
@@ -20,7 +30,7 @@ const Watchlist = () => {
       </div>
 
       <div className="cardStyle">
-        {authStore.isSignedIn ? (
+        {isSignedIn ? (
           favorites.length > 0 ? (
             <table className="tableStyle">
               <thead>
@@ -28,15 +38,14 @@ const Watchlist = () => {
                   <th className="thStyle">Currency</th>
                   <th className="thStyle">Price</th>
                   <th className="thStyle">Status</th>
-                
                 </tr>
               </thead>
               <tbody>
                 {favorites.map((coin: CoinDetails) => (
                   <tr key={coin.coinId}>
                     <td className="tdStyle">
-                      <NavLink
-                        to={`/coin-details/${coin.name}`}
+                      <div
+                        onClick={() => handleCarouselItemClick(coin)}
                         className="tableimage-fullname"
                       >
                         <img
@@ -49,7 +58,7 @@ const Watchlist = () => {
                           {coin.fullName}
                         </span>
                         <span className="markettable-symbol">{coin.name}</span>
-                      </NavLink>
+                      </div>
                     </td>
                     <td className="tdStyle">{coin.price}</td>
                     <td
@@ -69,12 +78,14 @@ const Watchlist = () => {
           )
         ) : (
           <div style={{ textAlign: "center" }}>
-            <span className="error-title">Please sign in to view your watchlist.</span>
+            <span className="error-title">
+              Please sign in to view your watchlist.
+            </span>
           </div>
         )}
       </div>
     </>
   );
-};
+});
 
 export default Watchlist;

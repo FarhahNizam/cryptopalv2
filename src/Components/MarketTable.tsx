@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TextField, InputAdornment, Pagination } from '@mui/material';
+import { TextField, InputAdornment, Pagination, CircularProgress, LinearProgress } from '@mui/material';
 import searchicon from '../Assets/searchicon.svg';
 import '../styles/crypto.css';
 import searchnotfound from '../Assets/errorsearchresults.svg';
@@ -56,11 +56,14 @@ const MarketTable: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(true); // Loading state
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true); // Set loading to true before fetching data
+
       const response = await fetch(
         'https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=USD'
       );
@@ -76,6 +79,7 @@ const MarketTable: React.FC = () => {
 
       setData(sortedData);
       setTotalPages(Math.ceil(sortedData.length / itemsPerPage));
+      setLoading(false); // Set loading to false after data is fetched
     };
 
     fetchData();
@@ -113,8 +117,6 @@ const MarketTable: React.FC = () => {
     });
 
     setData(sortedData);
-    console.log(sortedData)
-    
   };
 
   const startIndex = currentPage * itemsPerPage;
@@ -166,7 +168,12 @@ const MarketTable: React.FC = () => {
         </div>
       </div>
 
-      {filteredData.length > 0 ? (
+      {loading ? ( // Render loading screen while loading is true
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <CircularProgress color="secondary" /> {/* Show a circular progress bar */}
+          <span>Loading...</span> {/* Display loading text */}
+        </div>
+      ) : filteredData.length > 0 ? (
         <table className="tableStyle">
           <thead>
             <tr>
@@ -215,6 +222,10 @@ const MarketTable: React.FC = () => {
           />
           <span className="error-title">No results found.</span>
         </div>
+      )}
+
+      {loading && (
+        <LinearProgress color="secondary" style={{ marginTop: '20px' }} /> // Show progress bar when loading
       )}
 
       <div className="pagination-pills">

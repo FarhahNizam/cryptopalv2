@@ -1,4 +1,3 @@
-
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -21,6 +20,7 @@ interface UserInput {
 interface SignInProps {
   onSignInSuccess: () => void;
 }
+
 const SignIn: React.FC = observer(() => {
   const {
     register,
@@ -29,6 +29,7 @@ const SignIn: React.FC = observer(() => {
     setError,
   } = useForm<UserInput>();
   const [showPassword, setShowPassword] = useState(false);
+  const [isButtonPressed, setIsButtonPressed] = useState(false); // New state variable
 
   let history = useNavigate();
   const redirectToLogin = () => {
@@ -37,10 +38,15 @@ const SignIn: React.FC = observer(() => {
   };
 
   const onSubmit = async (data: UserInput) => {
+    if (isButtonPressed) {
+      return; // Return early if button already pressed
+    }
+
+    setIsButtonPressed(true); // Set the button pressed state to true
+
     const { email, password } = data;
   
     try {
-
       const auth = getAuth();
   
       // Enable persistence
@@ -68,6 +74,11 @@ const SignIn: React.FC = observer(() => {
         console.log("Error signing in:", error.message);
       }
     }
+  };
+
+  const handleSignOut = () => {
+    toast.dismiss(); // Close any remaining Toastify messages
+    // Implement sign out logic here
   };
   
   const togglePasswordVisibility = () => {
@@ -108,13 +119,14 @@ const SignIn: React.FC = observer(() => {
             <p className="error-message">{errors.password.message}</p>
           )}
           <div className="submit-btn">
-            <button type="submit">Sign In</button>
+            <button type="submit" onClick={handleSignOut}>Sign In</button>
           </div>
         </form>
       </div>
       <div>
         <AuthDetails />
       </div>
+      <ToastContainer autoClose={false} /> {/* Add ToastContainer outside the form and disable autoClose */}
     </div>
   );
 });

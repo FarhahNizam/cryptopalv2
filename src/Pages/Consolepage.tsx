@@ -5,7 +5,9 @@ import SignIn from '../Components/SignIn';
 import SignUp from '../Components/SignUp';
 import '../styles/crypto.css';
 import rootStore from '../stores/RootStore';
-import { getAuth,signOut } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Consolepage: React.FC = observer(() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,41 +30,33 @@ const Consolepage: React.FC = observer(() => {
     rootStore.authStore.openModal();
   };
 
-  
-
-
   const renderAuthButton = () => {
     if (rootStore.authStore.isSignedIn) {
-
       // User is signed in, show sign-out button
       return (
-        
         <div>
-          <span>{rootStore.authStore.username}</span> 
+          <span>{rootStore.authStore.username}</span>
           <button onClick={handleSignOut}>Sign Out</button>
-
         </div>
       );
     } else if (!rootStore.authStore.isSignedIn && !authStore.isModalOpen) {
       // User is not signed in and modal is not open, show sign-in button
-      return (
-        <button onClick={handleSignInSuccess}>Sign In</button>
-      );
+      return <button onClick={handleSignInSuccess}>Sign In</button>;
     } else {
       // User is not signed in, do not render any button
       return null;
     }
   };
-  
 
   const handleSignOut = () => {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
         rootStore.authStore.clearAuthUser();
+        toast.dismiss(); // Close any remaining Toastify messages
         console.log('User signed out successfully!');
       })
-      .catch((error:any) => {
+      .catch((error: any) => {
         console.log('Error signing out:', error.message);
       });
   };
@@ -71,7 +65,7 @@ const Consolepage: React.FC = observer(() => {
     <div>
       {renderAuthButton()}
       {authStore.isModalOpen && (
-        <div className="overlay">
+        <div className={`overlay ${isModalOpen ? 'open' : ''}`}>
           <div className="modal">
             <div className="modal-content">
               <div className="tab-container">
@@ -94,6 +88,7 @@ const Consolepage: React.FC = observer(() => {
           </div>
         </div>
       )}
+      <ToastContainer autoClose={false} /> {/* Add ToastContainer outside the modal */}
     </div>
   );
 });

@@ -5,20 +5,24 @@ export interface CoinDetails {
   name: string;
   fullName: string;
   price: string;
-  imageurl:string;
-  changepct:number;
+  imageurl: string;
+  changepct: number;
   // Add other properties as needed
 }
 
 class FavoriteStore {
   favorites: CoinDetails[] = [];
+  selectedCoin: CoinDetails | null = null;
 
   constructor() {
     makeObservable(this, {
       favorites: observable,
+      selectedCoin: observable,
       addToFavorites: action,
       removeFromFavorites: action,
       isFavorite: computed,
+      setSelectedCoin: action,
+      clearSelectedCoin: action,
     });
     this.loadFavorites();
   }
@@ -42,6 +46,14 @@ class FavoriteStore {
     return (coinId: string) => {
       return this.favorites.some((coin) => coin.coinId === coinId);
     };
+  }
+
+  setSelectedCoin(coin: CoinDetails) {
+    this.selectedCoin = coin;
+  }
+
+  clearSelectedCoin() {
+    this.selectedCoin = null;
   }
 
   loadFavorites() {
