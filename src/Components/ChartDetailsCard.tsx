@@ -1,4 +1,5 @@
 import React from "react";
+import cryptocurrencies from "../stores/Cryptocurrencies";
 
 interface ChartDetailsProps {
   symbol: string;
@@ -7,6 +8,8 @@ interface ChartDetailsProps {
   totalVolume24h: string;
   openDay: string;
 }
+// Example array for React
+
 
 const ChartDetailsCard: React.FC<ChartDetailsProps> = ({
   symbol,
@@ -15,6 +18,16 @@ const ChartDetailsCard: React.FC<ChartDetailsProps> = ({
   totalVolume24h,
   openDay,
 }) => {
+  // Find the cryptocurrency object that matches the symbol
+  const cryptocurrency = cryptocurrencies.find((crypto) => crypto.symbol === symbol);
+
+  // Function to open the cryptocurrency's homepage when the button is clicked
+  const handleVisitHomepage = () => {
+    if (cryptocurrency) {
+      window.open(cryptocurrency.url, "_blank"); // Opens the URL in a new tab
+    }
+  };
+
   return (
     <div className="chartdetails-container">
       <h2 className="chartdetails-title">{symbol}</h2>
@@ -36,8 +49,9 @@ const ChartDetailsCard: React.FC<ChartDetailsProps> = ({
       </div>
       <div className="buttonchartdetails">
         <span className="buttonchartdetailstext">Want to learn more?</span>
-      <button className="details-buttonchart">Visit homepage </button>
-
+        <button className="details-buttonchart" onClick={handleVisitHomepage}>
+          Visit homepage
+        </button>
       </div>
     </div>
   );
