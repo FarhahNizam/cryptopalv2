@@ -2,12 +2,9 @@
     "version": 2,
     "build": {
       "env": {
-        "CI": "1" ,
-      "npm": {
-        "flags": "--legacy-peer-deps"
-      }
+        "CI": "1"
+      },
+      "npm": "--legacy-peer-deps"
     }
   }
-
-}
   
