@@ -122,13 +122,13 @@ const WatchListDetails = () => {
          <Realtimechart coin={favoritesJson.name} />
     </div>
     <div className="chartdetails-container">
-    {/* <ChartDetailsCard
-          symbol={coin.CoinInfo.Name}
-          marketCap={coin.DISPLAY.USD.MKTCAP}
-          circulatingSupply={coin.DISPLAY.USD.CIRCULATINGSUPPLY}
-          totalVolume24h={coin.DISPLAY.USD.TOTALVOLUME24H}
-          openDay={coin.DISPLAY.USD.OPENDAY}
-        /> */}
+    <ChartDetailsCard
+          symbol={favoritesJson.name}
+          marketCap={favoritesJson.marketcap}
+          circulatingSupply={favoritesJson.circulatingsupply}
+          totalVolume24h={favoritesJson.totalvolume24h}
+          openDay={favoritesJson.openday}
+        />
     </div>
     </div>
   </div>

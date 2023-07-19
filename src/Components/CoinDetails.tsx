@@ -66,8 +66,14 @@ const CoinDetailsPage: React.FC = observer(() => {
             price: coin.DISPLAY.USD.PRICE,
             imageurl: coin.CoinInfo.ImageUrl,
             changepct: coin.DISPLAY.USD.CHANGEPCT24HOUR,
-            userId: currentUser.uid, // Set userId to the current user's UID
-            // Add other properties as needed
+            userId: currentUser.uid, 
+            marketcap:coin.DISPLAY.USD.MKTCAP,
+            circulatingsupply:coin.DISPLAY.USD.CIRCULATINGSUPPLY,
+            totalvolume24h:coin.DISPLAY.USD.TOTALVOLUME24H,
+            openday:coin.DISPLAY.USD.OPENDAY,
+            
+            // Set userId to the current user's UID
+           
           };
           // Add the coin to favorites
           await setDoc(favoriteDoc, coinDetails);

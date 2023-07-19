@@ -55,6 +55,11 @@ const Watchlist = observer(() => {
         imageurl: coin.imageurl,
         changepct: coin.changepct,
         userId: auth.currentUser?.uid ?? "",
+        marketcap:coin.marketcap,
+        circulatingsupply:coin.circulatingsupply,
+        totalvolume24h:coin.totalvolume24h,
+        openday:coin.openday,
+
       };
 
       const favoritesJson = JSON.stringify(coinDetails);

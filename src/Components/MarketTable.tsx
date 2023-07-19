@@ -101,23 +101,28 @@ const MarketTable: React.FC = () => {
     const sortedData = [...data].sort((a, b) => {
       const priceA = parseFloat(a.DISPLAY?.USD?.PRICE) || 0;
       const priceB = parseFloat(b.DISPLAY?.USD?.PRICE) || 0;
-
       return priceB - priceA;
+      
     });
-
+    
     setData(sortedData);
+    setCurrentPage(0);
+    console.log(sortedData);
+    // Reset the current page to the first page after sorting
   };
 
   const handleLowestButtonClick = () => {
     const sortedData = [...data].sort((a, b) => {
       const priceA = parseFloat(a.DISPLAY?.USD?.PRICE) || 0;
       const priceB = parseFloat(b.DISPLAY?.USD?.PRICE) || 0;
-
       return priceA - priceB;
     });
-
+  
     setData(sortedData);
+    console.log(sortedData);
+    setCurrentPage(0); // Reset the current page to the first page after sorting
   };
+
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -132,6 +137,8 @@ const MarketTable: React.FC = () => {
     navigate(`/coin-details/${coin.CoinInfo.Name}`, { state: { coin } });
     console.log('helloooooo');
   };
+
+ 
 
   return (
     <div className="cardStyle">

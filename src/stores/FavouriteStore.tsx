@@ -8,6 +8,11 @@ export interface CoinDetails {
   imageurl: string;
   changepct: number;
   userId: string;
+  marketcap:string,
+  circulatingsupply:string,
+  totalvolume24h:string,
+  openday:string,
+  
   
   // Add other properties as needed
 }

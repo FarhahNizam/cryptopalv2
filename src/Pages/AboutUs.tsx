@@ -42,6 +42,11 @@ const team = [
 ];
 
 const AboutUs: React.FC = () => {
+  const openLinkedinProfile = (linkedinUrl:any) => {
+    window.open(linkedinUrl, "_blank");
+  };
+
+
   return (
     <>
      <Navigbar/>
@@ -83,7 +88,7 @@ const AboutUs: React.FC = () => {
                       <div className="team-card-back">
                         <span className="team-info">
                           <p>{item.desc1}</p>
-                          <a href={item.linkedin}>
+                          <div onClick={() => openLinkedinProfile(item.linkedin)}>
                             <img
                               className="linkedinLogo"
                               src={linkedinLogo}
@@ -95,7 +100,7 @@ const AboutUs: React.FC = () => {
                               className="fa fa-linkedin"
                               aria-hidden="true"
                             ></i>
-                          </a>
+                          </div>
                         </span>
                       </div>
                     </div>
