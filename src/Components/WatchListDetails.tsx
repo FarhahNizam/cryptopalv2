@@ -33,7 +33,7 @@ const WatchListDetails = () => {
   const favoritesJson= JSON.parse(coinDetails);
   console.log(favoritesJson);
 
-  const handleToggleFavorite = async (favoritesJson: CoinDetails, e: any) => {
+  const handleToggleFavorite =  async (favoritesJson: CoinDetails, e: any) => {
     e.preventDefault();
     try {
       const currentUser = auth.currentUser; // Get the current authenticated user using Firebase auth
@@ -86,19 +86,19 @@ const WatchListDetails = () => {
       <div className="coindetails-title">
         <span>{favoritesJson.name}</span>
         <span className="coindetails-symbol">{favoritesJson.name}</span>
-        {/* {authStore.isSignedIn && (
-          <IconButton
-            onClick={handleToggleFavorite}
-            style={{ marginLeft: 10 }}
-            title={isFavorite ? "Remove from favorites" : "Add to favorites"}
-          >
-            {isFavorite ? (
-              <FaHeart color="red" />
-            ) : (
-              <FaRegHeart />
-            )}
-          </IconButton>
-        )} */}
+        {authStore.isSignedIn && (
+       <IconButton
+       onClick={(e) => handleToggleFavorite(favoritesJson, e)} // Pass favoritesJson and event as arguments
+       style={{ marginLeft: 10 }}
+       title={isFavorite ? "Remove from favorites" : "Add to favorites"}
+     >
+       {isFavorite ? (
+         <FaHeart color="red" />
+       ) : (
+         <FaRegHeart />
+       )}
+     </IconButton>
+        )}
       </div>
       <div className="vl"></div>
       <div className="coindetails-price">
@@ -115,7 +115,6 @@ const WatchListDetails = () => {
           </span>
         </span>
       </div>
-      {/* Display other coin details */}
     </div>
     <div className="container-chart"> 
     <div className="card-livechart">

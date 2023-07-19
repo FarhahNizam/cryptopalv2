@@ -2,10 +2,10 @@ import React from "react";
 
 interface ChartDetailsProps {
   symbol: string;
-  marketCap: number;
-  circulatingSupply: number;
-  totalVolume24h: number;
-  openDay: number;
+  marketCap: string;
+  circulatingSupply: string;
+  totalVolume24h: string;
+  openDay: string;
 }
 
 const ChartDetailsCard: React.FC<ChartDetailsProps> = ({

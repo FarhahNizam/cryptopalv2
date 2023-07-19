@@ -63,10 +63,13 @@ const SignIn: React.FC = observer(() => {
       console.log('User signed in successfully!');
       console.log('UID:', user.uid,email); // Log the UID
      
-      // Display success toast message
-      toast.success('Logged in successfully!', {
-        position: toast.POSITION.TOP_CENTER,
-      });
+
+    
+        toast.success('Logged in successfully!', {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      
+      
     } catch (error: any) {
       if (error.code === "auth/wrong-password") {
         setError("password", { message: "Invalid password.Please try again" });

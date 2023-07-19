@@ -68,6 +68,8 @@ const Consolepage: React.FC = observer(() => {
           .then(() => {
             rootStore.authStore.clearAuthUser();
             console.log('User signed out successfully!');
+            navigate('/home');
+            window.location.reload();
           })
           .catch((error: any) => {
             console.log('Error signing out:', error.message);
@@ -106,8 +108,7 @@ const Consolepage: React.FC = observer(() => {
           </div>
         </div>
       )}
-      <ToastContainer autoClose={false} />
-       {/* Add ToastContainer outside the modal */}
+   
 
      
 

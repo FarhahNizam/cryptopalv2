@@ -20,22 +20,23 @@ const Footer: React.FC = observer(() =>{
           <ul>
             <div className='footercenter'> 
             <li>
-              <NavLink to="/home">Crypto</NavLink>
+              <a href="#">Crypto</a>
             </li>
             <li>
-              <NavLink to="/market">Market</NavLink>
+              <a href="#">Market</a>
             </li>
             <li>
-              <NavLink to="/watchlist">Watchlist</NavLink>
+            <a href="#">Watchlist</a>
             </li>
             <li>
-              <NavLink to="/news">News</NavLink>
+            <a href="#">News</a>
+
             </li>
             <li>
-              <NavLink to="/aboutus">About</NavLink>
+            <a href="#">About</a>
             </li>
             <li>
-              <NavLink to="/help">Help</NavLink>
+            <a href="#">Help</a>
             </li>
             </div>
            

@@ -14,6 +14,8 @@ import { CoinDetails } from "../stores/FavouriteStore";
 import NavBar from "../Components/Navigationbar";
 import Navigbar from "./Navigbar";
 
+
+
 interface CoinData {
   CoinInfo: {
     Id: string;
@@ -132,7 +134,7 @@ const CoinDetailsPage: React.FC = observer(() => {
           <span className={coin.DISPLAY.USD.CHANGEPCT24HOUR > 0 ? "positive" : "negative"}>
             Value:  <br />
             <span className="coindetails-price-content">
-              {coin.DISPLAY.USD.CHANGEPCT24HOUR > 0 ? '+' : '-'}
+              {coin.DISPLAY.USD.CHANGEPCT24HOUR > 0 ? '+' : ''}
               {coin.DISPLAY.USD.CHANGEPCT24HOUR}%
             </span>
           </span>
