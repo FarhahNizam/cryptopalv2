@@ -7,9 +7,10 @@ import NavBar from "../Components/Navigationbar";
 import favoriteStore, { CoinDetails } from "../stores/FavouriteStore";
 import "../styles/crypto.css";
 import authStore from "../stores/AuthStore";
-import { auth } from "../stores/RootStore";
+import rootStore, { auth } from "../stores/RootStore";
 import Navigbar from "../Components/Navigbar";
 import Footer from "../Components/Footer";
+import Consolepage from "./Consolepage";
 interface CoinData {
   CoinInfo: {
     Id: string;
@@ -67,6 +68,10 @@ const Watchlist = observer(() => {
     } else {
       console.error("Invalid coin object or missing 'coinId' property");
     }
+  };
+
+  const handleSignInSuccess = () => {
+    rootStore.authStore.openModal();
   };
 
    // Convert favorites data into JSON object
@@ -141,6 +146,7 @@ const Watchlist = observer(() => {
               </tbody>
             </table>
           ) : (
+            
             <div style={{ textAlign: "center" }}>
               <span className="error-title">No coins in watchlist.</span>
             </div>
@@ -148,7 +154,7 @@ const Watchlist = observer(() => {
         ) : (
           <div style={{ textAlign: "center" }}>
             <span className="error-title">
-            Oops! Your watchlist is empty :(
+            Oops! Please sign in to view watchlist :(
             </span>
           </div>
         )}
