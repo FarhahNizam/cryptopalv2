@@ -22,6 +22,7 @@ import Watchlist from '../src/Pages/WatchList';
 import News from '../src/Pages/News';
 import { ToastContainer } from 'react-toastify';
 import WatchListDetails from './Components/WatchListDetails';
+import ErrorPage from './Components/ErrorPage';
 
 
 
@@ -52,6 +53,9 @@ const App: React.FC = () => {
 
           <Route path="/coin-details/:coinName" element={<CoinDetailsPage />} />
           <Route path="/coin-detailsa/:name" element={<WatchListDetails />} />
+
+
+          <Route path ="*"element={<ErrorPage />} />
          
         </Routes>
       </Provider>

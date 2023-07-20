@@ -23,20 +23,24 @@ const Navigbar: React.FC = observer(() =>{
   
       navigate('/consolepage');
     };
+
+      const handleImageClick = () => {
+    navigate('/home');
+  };
   
   return (
     <div className="footerbar">
       <div className="footer-container">
       
-        <img className='logo-footer' src={Logo} alt="CryptoPal Logo" />
+        <img className='logo-footer' src={Logo} alt="CryptoPal Logo" onClick={handleImageClick}  />
 
       
         <div className="foot-elements">
           <ul>
             <div className='footercenter'> 
-            <li>
+            {/* <li>
               <NavLink to="/home">Crypto</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/market">Market</NavLink>
             </li>

@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import AuthStore from '../stores/AuthStore';
 import rootStore from '../stores/RootStore';
 import AuthDetails from './AuthDetails';
+import eyeopen from '../Assets/eyeopen.svg';
+import eyeclose from '../Assets/eyeclose.svg'
 
 interface UserInput {
   email: string;
@@ -95,10 +97,12 @@ const SignIn: React.FC = observer(() => {
           <input type="email" placeholder="Email" {...register("email")} />
 
           <div className="password-input">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              {...register("password", {
+      <div className="">
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          style={{ width: "100%" }}
+     {...register("password", {
                 required: "Password is required",
                 minLength: {
                   value: 8,
@@ -113,16 +117,22 @@ const SignIn: React.FC = observer(() => {
                   message: "Password should contain at least one symbol",
                 },
               })}
-            />
-            <IconButton type="button" onClick={togglePasswordVisibility}>
-              {showPassword ? <FaEye /> : <FaEyeSlash />}
-            </IconButton>
-          </div>
+        />
+      </div>
+      <div className="eye-icon-container">
+      <img
+          src={showPassword ? eyeopen : eyeclose}
+          alt={showPassword ? "Show Password" : "Hide Password"}
+          onClick={togglePasswordVisibility}
+          style={{ cursor: "pointer" }}
+        />
+      </div>
+    </div>
           {errors.password && (
             <p className="error-message">{errors.password.message}</p>
           )}
           <div className="submit-btn">
-            <button type="submit" onClick={handleSignOut}>Sign In</button>
+            <button type="submit" onClick={handleSignOut}>Log In</button>
           </div>
         </form>
       </div>

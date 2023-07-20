@@ -18,6 +18,12 @@ const Consolepage: React.FC = observer(() => {
   const handleTabChange = (event: React.MouseEvent<HTMLDivElement>, newTab: 'SignIn' | 'SignUp') => {
     setSelectedTab(newTab);
     openModal();
+
+    event.stopPropagation();
+  };
+
+  const handleContentClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
   };
 
   const openModal = () => {
@@ -43,7 +49,7 @@ const Consolepage: React.FC = observer(() => {
       );
     } else if (!rootStore.authStore.isSignedIn && !authStore.isModalOpen) {
       // User is not signed in and modal is not open, show sign-in button
-      return <button onClick={handleSignInSuccess}>Sign In</button>;
+      return <button onClick={handleSignInSuccess}>Log In</button>;
     } else {
       // User is not signed in, do not render any button
       return null;
@@ -85,9 +91,10 @@ const Consolepage: React.FC = observer(() => {
     <div>
       {renderAuthButton()}
       {authStore.isModalOpen && (
-        <div className={`overlay ${isModalOpen ? 'open' : ''}`}>
+        <div className={`overlay ${isModalOpen ? 'open' : ''}`} onClick={closeModal}>
+         
           <div className="modal">
-            <div className="modal-content">
+            <div className="modal-content" onClick={handleContentClick}>
               <div className="tab-container">
                 <div
                   className={`tab ${selectedTab === 'SignIn' ? 'active' : ''}`}
@@ -103,7 +110,6 @@ const Consolepage: React.FC = observer(() => {
                 </div>
               </div>
               {selectedTab === 'SignIn' ? <SignIn /> : <SignUp />}
-              <button onClick={closeModal}>Close</button>
             </div>
           </div>
         </div>
