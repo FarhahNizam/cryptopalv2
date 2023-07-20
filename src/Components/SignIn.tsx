@@ -83,7 +83,6 @@ const SignIn: React.FC = observer(() => {
 
   const handleSignOut = () => {
     toast.dismiss(); // Close any remaining Toastify messages
-    // Implement sign out logic here
   };
   
   const togglePasswordVisibility = () => {

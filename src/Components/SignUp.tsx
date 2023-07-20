@@ -13,7 +13,6 @@ interface UserInput {
 }
 
 const SignUp: React.FC = () => {
-  const [successAlertVisible, setSuccessAlertVisible] = useState(false);
   const history = useNavigate();
   const {
     register,

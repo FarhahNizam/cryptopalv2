@@ -1517,3 +1517,8 @@ margin-left: 200px;
   background-size: cover;
   background-position: center;
 }
+
+.favorite-button{
+  margin-left: 60px;
+  padding-bottom: 80px;
+}

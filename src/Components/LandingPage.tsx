@@ -8,7 +8,6 @@ import rootStore from "../stores/RootStore";
 const LandingPage:React.FC=()=>{
 
     const navigate =useNavigate();
-   // Step 2: Get the history object
 
     const handleStartJourneyClick = () => {
         rootStore.authStore.openModal();
@@ -24,7 +23,7 @@ const LandingPage:React.FC=()=>{
             <div className="landing-page">
 <span className="landing-page-title">Welcome to CryptoPal !</span>
 <span className="landing-page-paragraph">Your cryptocurrencies information hub.</span>
-{rootStore.authStore.isSignedIn ? ( // Check if the user is signed in
+{rootStore.authStore.isSignedIn ? ( 
           <button className="long-button" onClick={handleAlternateButtonClick}>
             Explore Cryptocurrency
           </button>

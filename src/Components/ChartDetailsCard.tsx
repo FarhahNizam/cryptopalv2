@@ -8,7 +8,6 @@ interface ChartDetailsProps {
   totalVolume24h: string;
   openDay: string;
 }
-// Example array for React
 
 
 const ChartDetailsCard: React.FC<ChartDetailsProps> = ({
@@ -18,7 +17,6 @@ const ChartDetailsCard: React.FC<ChartDetailsProps> = ({
   totalVolume24h,
   openDay,
 }) => {
-  // Find the cryptocurrency object that matches the symbol
   const cryptocurrency = cryptocurrencies.find((crypto) => crypto.symbol === symbol);
 
   // Function to open the cryptocurrency's homepage when the button is clicked
